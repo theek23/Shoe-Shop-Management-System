@@ -1,4 +1,4 @@
-package lk.ijse.gdse66.helloshoes.backend.dto;
+package lk.ijse.gdse66.helloshoes.backend.dto.basic;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

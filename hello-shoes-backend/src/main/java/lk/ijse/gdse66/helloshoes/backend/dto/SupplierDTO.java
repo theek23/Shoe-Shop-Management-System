@@ -5,6 +5,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lk.ijse.gdse66.helloshoes.backend.dto.basic.InventoryBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.Inventory;
 import lk.ijse.gdse66.helloshoes.backend.entity.embedded.Address;
 import lk.ijse.gdse66.helloshoes.backend.entity.embedded.ContactNo;
@@ -30,5 +31,5 @@ public class SupplierDTO {
     private ContactNo contactNo;
     private String email;
 
-    private List<Inventory> inventoryItems;
+    private List<InventoryBasicDTO> inventoryItems;
 }

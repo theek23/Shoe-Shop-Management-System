@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.helloshoes.backend.dto;
 
+import lk.ijse.gdse66.helloshoes.backend.dto.basic.UserBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.Sale;
 import lk.ijse.gdse66.helloshoes.backend.entity.User;
 import lk.ijse.gdse66.helloshoes.backend.entity.embedded.Address;
@@ -37,6 +38,6 @@ public class EmployeeDTO implements Serializable {
     private String guardianName;
     private String EmergencyContactNo;
 
-    private User user;
+    private UserBasicDTO user;
     private List<Sale> sales;
 }

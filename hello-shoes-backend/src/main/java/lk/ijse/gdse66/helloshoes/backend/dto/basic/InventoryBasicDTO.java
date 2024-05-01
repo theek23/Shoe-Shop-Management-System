@@ -1,12 +1,8 @@
-package lk.ijse.gdse66.helloshoes.backend.dto;
+package lk.ijse.gdse66.helloshoes.backend.dto.basic;
 
-import lk.ijse.gdse66.helloshoes.backend.dto.basic.SupplierBasicDTO;
-import lk.ijse.gdse66.helloshoes.backend.entity.SaleDetail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * @author: Theekshana De Silva,
@@ -15,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InventoryDTO {
+public class InventoryBasicDTO {
     private String itemCode;
     private String description;
     private String picture;
@@ -26,7 +22,4 @@ public class InventoryDTO {
     private Double expectProfit;
     private Double profitMargin;
     private String status;
-
-    private SupplierBasicDTO supplier;
-    private List<SaleDetail> saleDetail;
 }

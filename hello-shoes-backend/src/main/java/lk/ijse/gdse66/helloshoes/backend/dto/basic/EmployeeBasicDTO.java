@@ -1,6 +1,5 @@
-package lk.ijse.gdse66.helloshoes.backend.dto;
+package lk.ijse.gdse66.helloshoes.backend.dto.basic;
 
-import lk.ijse.gdse66.helloshoes.backend.dto.basic.EmployeeBasicDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class EmployeeBasicDTO {
+    private String employeeCode;
+    private String name;
     private String email;
-    private String password;
-
-    private EmployeeBasicDTO employee;
 }
