@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.helloshoes.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Id;

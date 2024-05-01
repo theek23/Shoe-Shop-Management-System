@@ -5,7 +5,6 @@ import lk.ijse.gdse66.helloshoes.backend.entity.Supplier;
 import lk.ijse.gdse66.helloshoes.backend.repo.SupplierRepo;
 import lk.ijse.gdse66.helloshoes.backend.service.SupplierService;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

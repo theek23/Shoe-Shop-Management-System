@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.helloshoes.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lk.ijse.gdse66.helloshoes.backend.entity.SaleDetail;
 import lk.ijse.gdse66.helloshoes.backend.entity.Supplier;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,6 @@ public class InventoryDTO {
     private Double profitMargin;
     private String status;
 
-    private Supplier supplier;
+    private SupplierBasicDTO supplier;
     private List<SaleDetail> saleDetail;
 }
