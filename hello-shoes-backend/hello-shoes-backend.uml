@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Persistence</ID>
+  <OriginalElement>JavaeeElement:/8325f9ac/hello-shoes-backend/hello-shoes-backend/jpa/JPA/PersistenceModel</OriginalElement>
+  <nodes>
+    <node x="0.0" y="282.0">Employee#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Employee.java</node>
+    <node x="405.6203703703704" y="392.0">Supplier#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Supplier.java</node>
+    <node x="198.12037037037038" y="44.0">Address#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/embedded/Address.java</node>
+    <node x="180.99999999999997" y="326.0">Customer#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Customer.java</node>
+    <node x="537.1203703703704" y="0.0">Inventory#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Inventory.java</node>
+    <node x="396.1203703703704" y="77.0">ContactNo#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/embedded/ContactNo.java</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Customer#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Customer.java" target="Address#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/embedded/Address.java" relationship="EMBEDDING">
+      <point x="0.0" y="-127.0" />
+      <point x="274.0" y="257.0" />
+      <point x="271.1203703703704" y="257.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="Supplier#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Supplier.java" target="Address#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/embedded/Address.java" relationship="EMBEDDING">
+      <point x="-48.33333333333337" y="-61.0" />
+      <point x="429.787037037037" y="257.0" />
+      <point x="271.1203703703704" y="257.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="Employee#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Employee.java" target="Address#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/embedded/Address.java" relationship="EMBEDDING">
+      <point x="0.0" y="-171.0" />
+      <point x="80.5" y="257.0" />
+      <point x="271.1203703703704" y="257.0" />
+      <point x="0.0" y="72.0" />
+    </edge>
+    <edge source="Supplier#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Supplier.java" target="Inventory#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Inventory.java" relationship="RELATION">
+      <point x="48.33333333333337" y="-61.0" />
+      <point x="526.4537037037037" y="257.0" />
+      <point x="613.1203703703704" y="257.0" />
+      <point x="0.0" y="116.0" />
+    </edge>
+    <edge source="Supplier#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/Supplier.java" target="ContactNo#file://C:/Workspace/IJSE/Advanced API Development/Final Course Work/HelloShoes/hello-shoes-backend/src/main/java/lk/ijse/gdse66/helloshoes/backend/entity/embedded/ContactNo.java" relationship="EMBEDDING">
+      <point x="0.0" y="-61.0" />
+      <point x="478.1203703703704" y="257.0" />
+      <point x="456.6203703703704" y="257.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7619799139167863" showDependencies="false" x="359.4323102993786" y="219.8787422331011" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Embeddables</Category>
+    <Category>Properties</Category>
+    <Category>Superclasses</Category>
+  </Categories>
+</Diagram>
+

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hello-shoes-backend:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>hello-shoes-backend</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="hello-shoes-backend-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="hello-shoes-backend:war exploded" />
+    </root>
+  </artifact>
+</component>
