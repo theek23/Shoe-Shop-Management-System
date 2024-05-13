@@ -39,7 +39,7 @@ public class CustomerController {
         return customerService.saveCustomer(customerDTO);
     }
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateVehicle(@PathVariable String id,@RequestBody CustomerDTO customerDTO) {
+    public ResponseUtil updateCustomer(@PathVariable String id,@RequestBody CustomerDTO customerDTO) {
         System.out.println(customerDTO);
         customerService.updateCustomer(id,customerDTO);
         return new ResponseUtil("Ok", "Update Success", null);

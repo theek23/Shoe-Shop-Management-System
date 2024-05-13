@@ -44,7 +44,7 @@ public class EmployeeController {
 
     //Update
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateVehicle(@PathVariable String id,@RequestBody EmployeeDTO employeeDTO) {
+    public ResponseUtil updateEmployee(@PathVariable String id,@RequestBody EmployeeDTO employeeDTO) {
         System.out.println(employeeDTO);
         employeeService.updateEmployee(id,employeeDTO);
         return new ResponseUtil("Ok", "Update Success", null);

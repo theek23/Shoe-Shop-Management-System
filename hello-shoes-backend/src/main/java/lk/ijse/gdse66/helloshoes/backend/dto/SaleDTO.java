@@ -23,6 +23,7 @@ public class SaleDTO {
     private Double total;
     private Date purchaseDate;
     private String paymentMethod;
+    private Integer lastDigitsOfCard;
     private Double addedPoints;
 
     private Customer customer;

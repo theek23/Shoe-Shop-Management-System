@@ -2,6 +2,7 @@ package lk.ijse.gdse66.helloshoes.backend.dto;
 
 import lk.ijse.gdse66.helloshoes.backend.dto.basic.SupplierBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.SaleDetail;
+import lk.ijse.gdse66.helloshoes.backend.entity.Supplier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

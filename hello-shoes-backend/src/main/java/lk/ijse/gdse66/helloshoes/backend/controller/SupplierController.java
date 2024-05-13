@@ -44,7 +44,7 @@ public class SupplierController {
 
     //Update
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateVehicle(@PathVariable String id,@RequestBody SupplierDTO supplierDTO) {
+    public ResponseUtil updateSupplier(@PathVariable String id,@RequestBody SupplierDTO supplierDTO) {
         System.out.println(supplierDTO);
         supplierService.updateSupplier(id,supplierDTO);
         return new ResponseUtil("Ok", "Update Success", null);

@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity
-@IdClass(SaleDetail_ID.class)
+@IdClass(SaleDetail_ID.class)   
 public class SaleDetail{
     @Id
     private String itemCode;

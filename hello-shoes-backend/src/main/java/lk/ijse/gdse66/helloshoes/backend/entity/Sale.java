@@ -25,7 +25,9 @@ public class Sale {
     private Double total;
     private Date purchaseDate;
     private String paymentMethod;
+    private Integer lastDigitsOfCard;
     private Double addedPoints;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "customerCode")

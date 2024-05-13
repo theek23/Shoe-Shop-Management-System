@@ -30,6 +30,7 @@ public class Inventory {
     private Double expectProfit;
     private Double profitMargin;
     private String status;
+    private Integer Qty;
 
     @ManyToOne
     @JoinColumn(name = "supplierCode")

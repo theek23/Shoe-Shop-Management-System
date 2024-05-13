@@ -45,7 +45,7 @@ public class InventoryController {
 
     //Update
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateVehicle(@PathVariable String id,@RequestBody InventoryDTO inventoryDTO) {
+    public ResponseUtil updateInventory(@PathVariable String id,@RequestBody InventoryDTO inventoryDTO) {
         System.out.println(inventoryDTO);
         inventoryService.updateInventory(id,inventoryDTO);
         return new ResponseUtil("Ok", "Update Success", null);

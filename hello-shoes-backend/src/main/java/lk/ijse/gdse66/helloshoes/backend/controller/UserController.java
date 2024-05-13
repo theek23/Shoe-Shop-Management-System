@@ -43,7 +43,7 @@ public class UserController {
 
     //Update
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateVehicle(@PathVariable String id,@RequestBody UserDTO supplierDTO) {
+    public ResponseUtil updateUser(@PathVariable String id,@RequestBody UserDTO supplierDTO) {
         System.out.println(supplierDTO);
         userService.updateUser(id,supplierDTO);
         return new ResponseUtil("Ok", "Update Success", null);
