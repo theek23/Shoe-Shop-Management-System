@@ -1,11 +1,12 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
-      
+      <script src="../assets/js/jquery-3.7.0.min.js"></script>
+
       <!-- Favicon -->
       <link rel="shortcut icon" href="../assets/images/favicon.ico" />
       <link rel="stylesheet" href="../assets/css/backend-plugin.min.css">
@@ -13,6 +14,8 @@
       <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
       <link rel="stylesheet" href="../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
       <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">  </head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <body class="  ">
     <!-- loader Start -->
     <div id="loading">
@@ -26,7 +29,7 @@
         <div class="iq-sidebar  sidebar-default ">
             <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
                 <a href="../html/index.html" class="header-logo">
-                    <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">POSDash</h5>
+                    <img src="../assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">HELLO Shoe</h5>
                 </a>
                 <div class="iq-menu-bt-sidebar ml-0">
                     <i class="las la-bars wrapper-menu"></i>
@@ -221,7 +224,7 @@
                     <div class="iq-search-bar device-search">
                         <form action="#" class="searchbox">
                             <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                            <input type="text" class="text search-input" placeholder="Search here...">
+                            <input id="search-name" type="text" class="text search-input" placeholder="Search name here...">
                         </form>
                     </div>
                     <div class="d-flex align-items-center">
@@ -312,7 +315,7 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Customer List</h4>
+                        <h4 class="mb-3">Loyalty Members List</h4>
                         <p class="mb-0">A customer dashboard lets you easily gather and visualize customer data from optimizing <br>
                          the customer experience, ensuring customer retention. </p>
                     </div>
@@ -333,10 +336,10 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone No.</th>
-                            <th>Country</th>
-                            <th>Order</th>
-                            <th>Status</th>
-                            <th>Last Order</th>
+                            <th>Gender</th>
+                            <th>Level</th>
+                            <th>Points</th>
+                            <th>JoinDate</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -348,13 +351,13 @@
                                     <label for="checkbox2" class="mb-0"></label>
                                 </div>
                             </td>
-                            <td>Max Conversion</td>
+                            <td>Theekshana De Silva</td>
                             <td>max@gmail.com</td>
                             <td>0123456789</td>
-                            <td>USA</td>
-                            <td>2</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>1</td>
+                            <td>Male</td>
+                            <td><div class="badge badge-warning">New</div></td>
+                            <td>10</td>
+                            <td>20.01.2021</td>
                             <td>
                                 <div class="d-flex align-items-center list-action">
                                     <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
@@ -366,206 +369,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox3">
-                                    <label for="checkbox3" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Alex john</td>
-                            <td>alex@gmail.com</td>
-                            <td>0123456123</td>
-                            <td>USA</td>
-                            <td>3</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>2</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                        href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                        href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                        href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox4">
-                                    <label for="checkbox4" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Cliff Hanger</td>
-                            <td>cliff@gmail.com</td>
-                            <td>0189556789</td>
-                            <td>UK</td>
-                            <td>3</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>3</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                        href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                        href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                        href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox5">
-                                    <label for="checkbox5" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Terry Aki</td>
-                            <td>terry@gmail.com</td>
-                            <td>0123205789</td>
-                            <td>USA</td>
-                            <td>2</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>2</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                        href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                        href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                        href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox6">
-                                    <label for="checkbox6" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Rock lai</td>
-                            <td>rock@gmail.com</td>
-                            <td>0123452289</td>
-                            <td>UK</td>
-                            <td>3</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>1</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                        href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                        href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                        href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox7">
-                                    <label for="checkbox7" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Pete Sariya</td>
-                            <td>pete@gmail.com</td>
-                            <td>0111456789</td>
-                            <td>USA</td>
-                            <td>5</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>4</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                        href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                        href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                        href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox8">
-                                    <label for="checkbox8" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Ira Membrit</td>
-                            <td>ira@gmail.com</td>
-                            <td>0123458719</td>
-                            <td>UK</td>
-                            <td>4</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>2</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                        href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                        href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                        href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox9">
-                                    <label for="checkbox9" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Barb Ackue</td>
-                            <td>barb@gmail.com</td>
-                            <td>0123246789</td>
-                            <td>USA</td>
-                            <td>2</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>2</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                        href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                        href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                        href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="checkbox d-inline-block">
-                                    <input type="checkbox" class="checkbox-input" id="checkbox10">
-                                    <label for="checkbox10" class="mb-0"></label>
-                                </div>
-                            </td>
-                            <td>Paige Turner</td>
-                            <td>paige@gmail.com</td>
-                            <td>0125856789</td>
-                            <td>UK</td>
-                            <td>9</td>
-                            <td><div class="badge badge-warning">Pending</div></td>
-                            <td>7</td>
-                            <td>
-                                <div class="d-flex align-items-center list-action">
-                                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                        href="#"><i class="ri-eye-line mr-0"></i></a>
-                                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"
-                                        href="#"><i class="ri-pencil-line mr-0"></i></a>
-                                    <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                        href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+
                     </tbody>
                 </table>
                 </div>
@@ -608,6 +412,29 @@
         </div>
     </div>
       </div>
+        <div class="modal fade" id="view-customer" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="popup text-left">
+                            <h4 class="mb-3">New Order</h4>
+                            <div class="content create-workform bg-body">
+                                <div class="pb-3">
+                                    <label class="mb-2">Email</label>
+                                    <input type="text" class="form-control" placeholder="Enter Name or Email">
+                                </div>
+                                <div class="col-lg-12 mt-4">
+                                    <div class="d-flex flex-wrap align-items-ceter justify-content-center">
+                                        <div class="btn btn-primary mr-4" data-dismiss="modal">Cancel</div>
+                                        <div class="btn btn-outline-primary" data-dismiss="modal">Create</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Wrapper End-->
     <footer class="iq-footer">
@@ -622,13 +449,14 @@
                             </ul>
                         </div>
                         <div class="col-lg-6 text-right">
-                            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">POS Dash</a>.
+                            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">HELLO Shoe</a>.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+    <script src="controller/CustomerController.js"></script>
     <!-- Backend Bundle JavaScript -->
     <script src="../assets/js/backend-bundle.min.js"></script>
     
@@ -643,5 +471,8 @@
     
     <!-- app JavaScript -->
     <script src="../assets/js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
   </body>
 </html>

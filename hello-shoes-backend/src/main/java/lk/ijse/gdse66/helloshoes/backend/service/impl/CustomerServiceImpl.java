@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @author: Theekshana De Silva,
@@ -26,6 +27,32 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepo = customerRepo;
         this.modelMapper = modelMapper;
     }
+
+    @Override
+    public List<CustomerDTO> findCustomersByName(String name) {
+        return customerRepo.findCustomersByName(name).stream().map(
+                customer -> modelMapper.map(customer,CustomerDTO.class)).toList();
+    }
+
+    @Override
+    public String generateNewID() {
+        String lastID = customerRepo.findLastCustomerCode();
+
+        if (lastID == null){
+            return "CUST00001";
+        }
+        String numericPart = lastID.substring(5);
+        int numericValue = Integer.parseInt(numericPart);
+
+        // Increment the numeric value
+        numericValue++;
+
+        // Format the new ID with leading zeros
+        String newID = String.format("CUST%05d", numericValue);
+
+        return newID;
+    }
+
     @Override
     public List<CustomerDTO> getAllCustomers() {
         return customerRepo.findAll().stream().map(
@@ -45,13 +72,22 @@ public class CustomerServiceImpl implements CustomerService {
         }
         Customer customerEntity = modelMapper.map(customerDTO, Customer.class);
         Customer savedCustomer = customerRepo.save(customerEntity);
+        //System.out.println(getLastCustomer());
         return modelMapper.map(savedCustomer, CustomerDTO.class);
     }
 
     @Override
     public void updateCustomer(String id, CustomerDTO customerDTO) {
         Customer existingCustomer = customerRepo.findById(id).orElseThrow(() -> new RuntimeException("Customer not found with ID: " + id));
-        modelMapper.map(customerDTO, existingCustomer);
+        //modelMapper.map(customerDTO, existingCustomer);
+
+        existingCustomer.setName(customerDTO.getName());
+        existingCustomer.setEmail(customerDTO.getEmail());
+        existingCustomer.setContactNo(customerDTO.getContactNo());
+        existingCustomer.setGender(customerDTO.getGender());
+        existingCustomer.setLevel(customerDTO.getLevel());
+        existingCustomer.setTotalPoints(customerDTO.getTotalPoints());
+
         customerRepo.save(existingCustomer);
     }
 

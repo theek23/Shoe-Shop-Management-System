@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
+/*
  * @author: Theekshana De Silva,
  * @Runtime version: 11.0.11+9-b1341.60amd64
  **/
 @RestController
 @RequestMapping(value = "data/customers")
+@CrossOrigin(origins = "http://localhost:63342")
 public class CustomerController {
     private final CustomerService customerService;
 
@@ -25,12 +26,19 @@ public class CustomerController {
     }
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     List<CustomerDTO> getAllCustomers(){
-        System.out.println("request received");
         return customerService.getAllCustomers();
     }
     @GetMapping(params = {"id"})
     public ResponseUtil findCustomer(String id) {
         return new ResponseUtil("Ok", "Successfully Searched", customerService.getCustomerDetails(id));
+    }
+    @GetMapping(params = {"name"})
+    List<CustomerDTO> searchCustomersByName(String name) {
+        return customerService.findCustomersByName(name);
+    }
+    @GetMapping("/NewLoyaltyMember")
+    public ResponseUtil getNewID() {
+        return new ResponseUtil("Ok", "Successfully Searched", customerService.generateNewID());
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -38,9 +46,11 @@ public class CustomerController {
     CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
         return customerService.saveCustomer(customerDTO);
     }
+
+
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateCustomer(@PathVariable String id,@RequestBody CustomerDTO customerDTO) {
-        System.out.println(customerDTO);
+        System.out.println("Update");
         customerService.updateCustomer(id,customerDTO);
         return new ResponseUtil("Ok", "Update Success", null);
     }
@@ -48,7 +58,7 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseUtil deleteCustomer(@PathVariable String id) {
-        System.out.println("Request received to delete customer with ID: " + id);
+        System.out.println("Delete");
         customerService.deleteCustomer(id);
         return new ResponseUtil("Ok", "Customer Deleted Successfully", null);
     }

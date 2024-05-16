@@ -16,7 +16,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="hello-shoes-backend" value="a944d399-a2c8-4d93-bd89-9ddfde468a86" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
