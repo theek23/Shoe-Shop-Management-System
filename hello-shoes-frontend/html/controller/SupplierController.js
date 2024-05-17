@@ -59,7 +59,7 @@ $("#saveBtn").click(function() {
         addressLine4: formDataJson["addressLine4"],
         addressLine5: formDataJson["addressLine5"]
     };
-    // Remove individual address fields from main JSON object
+
     delete formDataJson["addressLine1"];
     delete formDataJson["addressLine2"];
     delete formDataJson["addressLine3"];
@@ -72,7 +72,6 @@ $("#saveBtn").click(function() {
     };
     delete formDataJson["contactNo1"];
     delete formDataJson["contactNo2"];
-    console.log(formDataJson)
     // Optionally, convert the JSON object to a JSON string
     var formDataJsonString = JSON.stringify(formDataJson);
 
