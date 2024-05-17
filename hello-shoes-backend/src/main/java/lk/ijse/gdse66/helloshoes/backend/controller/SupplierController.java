@@ -15,6 +15,7 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping(value = "data/suppliers")
+@CrossOrigin(origins = "http://localhost:63342")
 public class SupplierController {
     private final SupplierService supplierService;
 
@@ -34,11 +35,17 @@ public class SupplierController {
     public ResponseUtil findSupplier(String id) {
         return new ResponseUtil("Ok", "Successfully Searched", supplierService.getSupplierDetails(id));
     }
+    //NewID
+    @GetMapping("/getId")
+    public ResponseUtil getNewID() {
+        return new ResponseUtil("Ok", "Successfully Searched", supplierService.generateNewID());
+    }
 
     //Save
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     SupplierDTO saveSupplier(@RequestBody SupplierDTO supplierDTO){
+        System.out.println(supplierDTO);
         return supplierService.saveSupplier(supplierDTO);
     }
 

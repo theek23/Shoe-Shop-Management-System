@@ -28,6 +28,25 @@ public class SupplierServiceImpl implements SupplierService {
 
 
     @Override
+    public String generateNewID() {
+        String lastID = supplierRepo.findLastCustomerCode();
+
+        if (lastID == null){
+            return "SUP00001";
+        }
+        String numericPart = lastID.substring(5);
+        int numericValue = Integer.parseInt(numericPart);
+
+        // Increment the numeric value
+        numericValue++;
+
+        // Format the new ID with leading zeros
+        String newID = String.format("SUP%05d", numericValue);
+
+        return newID;
+    }
+
+    @Override
     public List<SupplierDTO> getAllSuppliers() {
         return supplierRepo.findAll().stream().map(
                 suppliers -> modelMapper.map(suppliers,SupplierDTO.class)).toList();

@@ -5,6 +5,7 @@ import lk.ijse.gdse66.helloshoes.backend.dto.SupplierDTO;
 import java.util.List;
 
 public interface SupplierService {
+    String generateNewID();
     List<SupplierDTO> getAllSuppliers();
     SupplierDTO getSupplierDetails(String id);
     SupplierDTO saveSupplier(SupplierDTO supplierDTO);

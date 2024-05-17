@@ -5,7 +5,9 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
-      
+
+      <script src="../assets/js/jquery-3.7.0.min.js"></script>
+
       <!-- Favicon -->
       <link rel="shortcut icon" href="../assets/images/favicon.ico" />
       <link rel="stylesheet" href="../assets/css/backend-plugin.min.css">
@@ -13,6 +15,8 @@
       <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
       <link rel="stylesheet" href="../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
       <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">  </head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <body class="  ">
     <!-- loader Start -->
     <div id="loading">
@@ -316,67 +320,82 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="page-list-suppliers.html" data-toggle="validator">
-                            <div class="row"> 
-                                <div class="col-md-6">                      
+                        <form id="supplier-form" action="page-list-suppliers.html" data-toggle="validator">
+                            <div class="row">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Name *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Name" required>
+                                        <label>Supplier Code</label>
+                                        <input id="supplierCode" name="supplierCode" type="text" class="form-control" placeholder="Supplier Code" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div>    
+                                </div>
+                                <div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label>Supplier Name *</label>
+                                        <input id="name" name="name" type="text" class="form-control" placeholder="Enter Name" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Category *</label>
+                                        <select id="category" name="category" class="selectpicker form-control" data-style="py-0">
+                                            <option value="International">International</option>
+                                            <option value="Local">Local</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Email *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Email" required>
+                                        <input id="email" type="text" name="email" class="form-control" placeholder="Enter Email" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div> 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Phone Number *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Phone Number" required>
-                                        <div class="help-block with-errors"></div>
                                     </div>
-                                </div> 
+                                    <div>
+                                        <label>Number 1</label>
+                                        <input id="contactNo1" type="text" name="contactNo1" class="form-control" placeholder="Enter Phone Number" required>
+                                    </div>
+                                    <div>
+                                        <label>Number 2</label>
+                                        <input id="contactNo2" type="text" name="contactNo2" class="form-control" placeholder="Enter Phone Number" required>
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>GST Number *</label>
-                                        <input type="text" class="form-control" placeholder="Enter GST Number" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
                                         <label>Address</label>
-                                        <textarea class="form-control" rows="4"></textarea>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>City *</label>
-                                        <input type="text" class="form-control" placeholder="Enter City" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div> 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>State *</label>
-                                        <input type="text" class="form-control" placeholder="Enter State" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Country *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Country" required>
-                                        <div class="help-block with-errors"></div>
+                                    <div class="form-group col-md-12">
+                                        <div>
+                                            <label>Line 1 *</label>
+                                            <input id="addressLine1" name="addressLine1" type="text" class="form-control" placeholder="Enter Country" required>
+                                        </div>
+                                        <div>
+                                            <label>Line 2 *</label>
+                                            <input id="addressLine2" name="addressLine2" type="text" class="form-control" placeholder="Enter Country" required>
+                                        </div>
+                                        <div>
+                                            <label>Line 3 *</label>
+                                            <input id="addressLine3" name="addressLine3" type="text" class="form-control" placeholder="Enter Country" required>
+                                        </div>
+                                        <div>
+                                            <label>Line 4 *</label>
+                                            <input id="addressLine4" name="addressLine4" type="text" class="form-control" placeholder="Enter Country" required>
+                                        </div>
+                                        <div>
+                                            <label>Line 5 *</label>
+                                            <input id="addressLine5" name="addressLine5" type="text" class="form-control" placeholder="Enter Country" required>
+                                        </div>
                                     </div>
                                 </div>
                             </div>                            
-                            <button type="submit" class="btn btn-primary mr-2">Add Supplier</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
+
                         </form>
+                        <button id="saveBtn" type="submit" class="btn btn-secondary mr-2">Add Supplier</button>
                     </div>
                 </div>
             </div>
@@ -419,5 +438,7 @@
     
     <!-- app JavaScript -->
     <script src="../assets/js/app.js"></script>
+
+    <script src="controller/SupplierController.js"></script>
   </body>
 </html>
