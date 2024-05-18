@@ -35,6 +35,11 @@ public class SupplierController {
     public ResponseUtil findSupplier(String id) {
         return new ResponseUtil("Ok", "Successfully Searched", supplierService.getSupplierDetails(id));
     }
+    //searchByName
+    @GetMapping(params = {"name"})
+    List<SupplierDTO> searchSuppliersByName(String name) {
+        return supplierService.findSuppliersByName(name);
+    }
     //NewID
     @GetMapping("/getId")
     public ResponseUtil getNewID() {

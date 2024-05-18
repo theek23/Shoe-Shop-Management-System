@@ -99,7 +99,6 @@ function getAllCustomers() {
             console.error("Error fetching customers:", err);
         }
     });
-
 }
 function closeModel(index,method){
     if(method== "delete"){

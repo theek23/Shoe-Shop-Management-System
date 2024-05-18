@@ -29,7 +29,7 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public String generateNewID() {
-        String lastID = supplierRepo.findLastCustomerCode();
+        String lastID = supplierRepo.findLastSupplierCode();
 
         if (lastID == null){
             return "SUP00001";
@@ -81,5 +81,11 @@ public class SupplierServiceImpl implements SupplierService {
             throw new RuntimeException("Cannot delete as supplier does not exist with ID: " + id);
         }
         supplierRepo.deleteById(id);
+    }
+
+    @Override
+    public List<SupplierDTO> findSuppliersByName(String name) {
+        return supplierRepo.findSuppliersByName(name).stream().map(
+                supplier -> modelMapper.map(supplier,SupplierDTO.class)).toList();
     }
 }
