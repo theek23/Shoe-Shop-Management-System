@@ -43,7 +43,6 @@ public class EmployeeController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO){
-        System.out.println(employeeDTO);
         return employeeService.saveEmployee(employeeDTO);
     }
 

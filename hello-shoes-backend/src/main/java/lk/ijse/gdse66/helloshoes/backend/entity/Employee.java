@@ -36,10 +36,10 @@ public class Employee {
     private Date dateOfJoin;
     private String branch;
     private Address address;
-    private String ContactNo;
+    private String contactNo;
     private String email;
     private String guardianName;
-    private String EmergencyContactNo;
+    private String emergencyContactNo;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private User user;
