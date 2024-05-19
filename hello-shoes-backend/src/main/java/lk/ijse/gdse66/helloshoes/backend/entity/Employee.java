@@ -25,7 +25,9 @@ public class Employee {
     @Id
     private String employeeCode;
     private String name;
-    private String profilePic;
+    @Lob
+    @Column(name = "profile_pic", columnDefinition = "LONGBLOB")
+    private byte[] profilePic;
     private Gender gender;
     private String status;
     private String designation;

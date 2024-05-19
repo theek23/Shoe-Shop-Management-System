@@ -360,8 +360,8 @@
                                     <div class="form-group">
                                         <label>Status *</label>
                                         <select id="status" name="status" class="selectpicker form-control" data-style="py-0" required>
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
+                                            <option value="Married">Married</option>
+                                            <option value="Unmarried">Unmarried</option>
                                         </select>
                                     </div>
                                 </div>
@@ -375,8 +375,10 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Access Role *</label>
-                                        <input id="accessRole" name="accessRole" type="text" class="form-control" placeholder="Enter Access Role" required>
-                                        <div class="help-block with-errors"></div>
+                                        <select id="accessRole" name="status" class="selectpicker form-control" data-style="py-0" required>
+                                            <option value="ADMIN">Admin</option>
+                                            <option value="USER">User</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -406,23 +408,23 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
-                                            <label>Building NO *</label>
-                                            <input id="buildingNo" name="buildingNo" type="text" class="form-control" placeholder="Enter Building NO" required>
+                                            <label>Line 1 *</label>
+                                            <input id="buildingNo" name="buildingNo" type="text" class="form-control" placeholder="Enter Address line 1" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label>Lane *</label>
-                                            <input id="lane" name="lane" type="text" class="form-control" placeholder="Enter Lane" required>
+                                            <label>Line 1 *</label>
+                                            <input id="lane" name="lane" type="text" class="form-control" placeholder="Enter Address line 1" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label>Main City *</label>
-                                            <input id="mainCity" name="mainCity" type="text" class="form-control" placeholder="Enter Main City" required>
+                                            <label>City *</label>
+                                            <input id="mainCity" name="mainCity" type="text" class="form-control" placeholder="Enter City" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label>Main State *</label>
-                                            <input id="mainState" name="mainState" type="text" class="form-control" placeholder="Enter Main State" required>
+                                            <label>Country *</label>
+                                            <input id="mainState" name="mainState" type="text" class="form-control" placeholder="Enter Country" required>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                         <div class="form-group col-md-4">
@@ -433,29 +435,34 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="details personal">
-                                        <span class="form-title">Contact Details</span>
-                                    </div>
                                     <div class="row">
-                                        <div class="form-group col-md-4">
-                                            <label>Contact Number *</label>
-                                            <input id="contactNumber" name="contactNumber" type="text" class="form-control" placeholder="Enter Contact Number" required>
-                                            <div class="help-block with-errors"></div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Contact Number *</label>
+                                                <input id="contactNumber" name="contactNumber" type="text" class="form-control" placeholder="Enter Contact Number" required>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label>Email *</label>
-                                            <input id="email" name="email" type="text" class="form-control" placeholder="Enter Email" required>
-                                            <div class="help-block with-errors"></div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Email *</label>
+                                                <input id="email" name="email" type="text" class="form-control" placeholder="Enter Email" required>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label>Inform in Case of Emergency *</label>
-                                            <input id="emergencyContact" name="emergencyContact" type="text" class="form-control" placeholder="Enter Emergency Contact" required>
-                                            <div class="help-block with-errors"></div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Inform in Case of Emergency *</label>
+                                                <input id="emergencyContact" name="emergencyContact" type="text" class="form-control" placeholder="Enter Emergency Contact" required>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label>Emergency Contact Number *</label>
-                                            <input id="emergencyContactNumber" name="emergencyContactNumber" type="text" class="form-control" placeholder="Enter Emergency Contact Number" required>
-                                            <div class="help-block with-errors"></div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Emergency Contact Number *</label>
+                                                <input id="emergencyContactNumber" name="emergencyContactNumber" type="text" class="form-control" placeholder="Enter Emergency Contact Number" required>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -10,6 +10,7 @@ import org.modelmapper.PropertyMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -65,7 +66,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeDTO.getEmployeeCode() == null || employeeDTO.getEmployeeCode().isEmpty()) {
             employeeDTO.setEmployeeCode(UUID.randomUUID().toString()); // Generate new UUID only if necessary
         }
+        byte[] imageBytes = Base64.getDecoder().decode(employeeDTO.getProfilePic());
         Employee employeeEntity = modelMapper.map(employeeDTO, Employee.class);
+        employeeEntity.setProfilePic(imageBytes);
         Employee savedEmployee = employeeRepo.save(employeeEntity);
         return modelMapper.map(savedEmployee, EmployeeDTO.class);
     }
