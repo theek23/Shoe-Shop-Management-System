@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.helloshoes.backend.service.impl;
 
+import lk.ijse.gdse66.helloshoes.backend.dto.SupplierDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.Employee;
 import lk.ijse.gdse66.helloshoes.backend.entity.Employee;
 import lk.ijse.gdse66.helloshoes.backend.dto.EmployeeDTO;
@@ -96,6 +97,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeDTO> findEmployeesByName(String name) {
-        return null;
+        return employeeRepo.findEmployeesByName(name).stream().map(
+                employee -> modelMapper.map(employee, EmployeeDTO.class)).toList();
     }
 }

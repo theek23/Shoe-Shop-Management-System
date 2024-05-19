@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     } else if (path.includes("page-list-employees.html")) {
         initialLoadPage02()
-        //searchEmployeeByName()
+        searchEmployeeByName()
     } else {
         console.log("Unknown page");
     }
@@ -26,6 +26,35 @@ function initialLoadPage01(){
 
 function initialLoadPage02(){
     getAllEmployees();
+}
+//search by name
+function searchEmployeeByName(){
+    const searchInput = document.getElementById('search-name');
+
+    searchInput.addEventListener('input', (event) => {
+        searchEmployee(event.target.value)
+        if (event.target.value== null){
+            getAllEmployees();
+        }
+    });
+}
+function searchEmployee(searchValue){
+    $.ajax({
+        url: baseUrl + "employees?name="+searchValue,
+        method: "GET",
+        contentType: "application/json",
+        success: function (res) {
+            if (Array.isArray(res)) {
+                employees = res;
+                loadAllEmployees(employees);
+            } else {
+                console.log("No data received or data is not an array");
+            }
+        },
+        error: function (err) {
+            console.error("Error fetching employees:", err);
+        }
+    });
 }
 //getALlEmployee
 function getAllEmployees() {

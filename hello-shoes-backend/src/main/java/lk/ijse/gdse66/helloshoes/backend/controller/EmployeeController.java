@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.helloshoes.backend.controller;
 
+import lk.ijse.gdse66.helloshoes.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.helloshoes.backend.service.EmployeeService;
 import lk.ijse.gdse66.helloshoes.backend.util.ResponseUtil;
@@ -38,6 +39,10 @@ public class EmployeeController {
     @GetMapping("/getId")
     public ResponseUtil getNewID() {
         return new ResponseUtil("Ok", "Successfully Searched", employeeService.generateNewID());
+    }
+    @GetMapping(params = {"name"})
+    List<EmployeeDTO> searchEmployeesByName(String name) {
+        return employeeService.findEmployeesByName(name);
     }
     //Save
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
