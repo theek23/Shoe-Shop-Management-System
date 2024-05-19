@@ -7,12 +7,14 @@
       <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
       
       <!-- Favicon -->
+<!--      <link rel="stylesheet" href="../assets/css/custom.css">-->
       <link rel="shortcut icon" href="../assets/images/favicon.ico" />
       <link rel="stylesheet" href="../assets/css/backend-plugin.min.css">
       <link rel="stylesheet" href="../assets/css/backend.css?v=1.0.0">
       <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
       <link rel="stylesheet" href="../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
-      <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">  </head>
+      <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">
+  </head>
   <body class="  ">
     <!-- loader Start -->
     <div id="loading">
@@ -305,78 +307,159 @@
                     </div>
                 </div>
             </div>
-        </div>     <div class="content-page">
+        </div>
+        <div class="content-page">
      <div class="container-fluid add-form-list">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Add Supplier</h4>
+                            <h4 class="card-title">Add Employee</h4>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="page-list-suppliers.html" data-toggle="validator">
-                            <div class="row"> 
-                                <div class="col-md-6">                      
+                        <form id="employee-form" action="page-list-employees.html" data-toggle="validator">
+                            <div class="row">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Name *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Name" required>
+                                        <label for="file-1" id="file-1-preview">
+                                            <img src="https://bit.ly/3ubuq5o" alt="" style="max-width: 40%;">
+                                        </label>
+                                        <input type="file" id="file-1" accept="image/*" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Employee Code *</label>
+                                        <input id="employeeCode" name="employeeCode" type="text" class="form-control" placeholder="Enter Your Code" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div>    
-                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Email *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Email" required>
+                                        <label>Employee Name *</label>
+                                        <input id="name" name="name" type="text" class="form-control" placeholder="Enter Your Name" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div> 
-                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Phone Number *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Phone Number" required>
+                                        <label>Gender *</label>
+                                        <select id="gender" name="gender" class="selectpicker form-control" data-style="py-0" required>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Status *</label>
+                                        <select id="status" name="status" class="selectpicker form-control" data-style="py-0" required>
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Designation *</label>
+                                        <input id="designation" name="designation" type="text" class="form-control" placeholder="Enter Designation" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div> 
-                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>GST Number *</label>
-                                        <input type="text" class="form-control" placeholder="Enter GST Number" required>
+                                        <label>Access Role *</label>
+                                        <input id="accessRole" name="accessRole" type="text" class="form-control" placeholder="Enter Access Role" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Date of Birth *</label>
+                                        <input id="dob" type="date" name="dob" class="form-control" placeholder="Enter Date of Birth" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Date of Join *</label>
+                                        <input id="doj" type="date" name="doj" class="form-control" placeholder="Enter Date of Join" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Attached Branch *</label>
+                                        <input id="attachedBranch" name="attachedBranch" type="text" class="form-control" placeholder="Enter Attached Branch" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <textarea class="form-control" rows="4"></textarea>
+                                    <div class="details personal">
+                                        <span class="form-title">Address Details</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label>Building NO *</label>
+                                            <input id="buildingNo" name="buildingNo" type="text" class="form-control" placeholder="Enter Building NO" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Lane *</label>
+                                            <input id="lane" name="lane" type="text" class="form-control" placeholder="Enter Lane" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Main City *</label>
+                                            <input id="mainCity" name="mainCity" type="text" class="form-control" placeholder="Enter Main City" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Main State *</label>
+                                            <input id="mainState" name="mainState" type="text" class="form-control" placeholder="Enter Main State" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Postal Code *</label>
+                                            <input id="postalCode" name="postalCode" type="text" class="form-control" placeholder="Enter Postal Code" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>City *</label>
-                                        <input type="text" class="form-control" placeholder="Enter City" required>
-                                        <div class="help-block with-errors"></div>
+                                    <div class="details personal">
+                                        <span class="form-title">Contact Details</span>
                                     </div>
-                                </div> 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>State *</label>
-                                        <input type="text" class="form-control" placeholder="Enter State" required>
-                                        <div class="help-block with-errors"></div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label>Contact Number *</label>
+                                            <input id="contactNumber" name="contactNumber" type="text" class="form-control" placeholder="Enter Contact Number" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Email *</label>
+                                            <input id="email" name="email" type="text" class="form-control" placeholder="Enter Email" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Inform in Case of Emergency *</label>
+                                            <input id="emergencyContact" name="emergencyContact" type="text" class="form-control" placeholder="Enter Emergency Contact" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Emergency Contact Number *</label>
+                                            <input id="emergencyContactNumber" name="emergencyContactNumber" type="text" class="form-control" placeholder="Enter Emergency Contact Number" required>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Country *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Country" required>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                            </div>                            
-                            <button type="submit" class="btn btn-primary mr-2">Add Supplier</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
+                            </div>
                         </form>
+                        <button id="saveBtn" type="submit" class="btn btn-secondary mr-2">Add Employee</button>
+                        <button id="clear" type="reset" class="btn btn-danger">Reset</button>
                     </div>
                 </div>
             </div>
