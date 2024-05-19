@@ -27,6 +27,27 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeRepo = employeeRepo;
         this.modelMapper = modelMapper;
     }
+
+
+    @Override
+    public String generateNewID() {
+        String lastID = employeeRepo.findLastEmployeeCode();
+
+        if (lastID == null){
+            return "EMP00001";
+        }
+        String numericPart = lastID.substring(5);
+        int numericValue = Integer.parseInt(numericPart);
+
+        // Increment the numeric value
+        numericValue++;
+
+        // Format the new ID with leading zeros
+        String newID = String.format("EMP%05d", numericValue);
+
+        return newID;
+    }
+
     @Override
     public List<EmployeeDTO> getAllEmployees() {
         return employeeRepo.findAll().stream().map(
@@ -62,5 +83,10 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new RuntimeException("Cannot delete as employee does not exist with ID: " + id);
         }
         employeeRepo.deleteById(id);
+    }
+
+    @Override
+    public List<EmployeeDTO> findEmployeesByName(String name) {
+        return null;
     }
 }

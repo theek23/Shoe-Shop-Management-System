@@ -34,7 +34,11 @@ public class EmployeeController {
     public ResponseUtil findEmployee(String id) {
         return new ResponseUtil("Ok", "Successfully Searched", employeeService.getEmployeeDetails(id));
     }
-
+    //newID
+    @GetMapping("/getId")
+    public ResponseUtil getNewID() {
+        return new ResponseUtil("Ok", "Successfully Searched", employeeService.generateNewID());
+    }
     //Save
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
