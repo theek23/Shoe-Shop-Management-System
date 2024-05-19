@@ -80,6 +80,7 @@ $("#saveBtn").click(function(event) {
     let file = fileInput.files[0];
 
     if (file) {
+        console.log(formDataJson)
         encodeImageToBase64(file, function(base64String) {
             formDataJson["profilePic"] = base64String;
 
