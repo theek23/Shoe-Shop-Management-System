@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function initialLoadPage01(){
     empCodeInput.prop('readonly', true);
     setImage();
-    //getNewId();
+    getNewId();
 }
 
 function setImage(){
@@ -30,5 +30,20 @@ function setImage(){
             img.src = reader.result;
         }
         reader.readAsDataURL(event.target.files[0]);
+    });
+}
+
+//Generate new ID
+function getNewId() {
+    $.ajax({
+        url: baseUrl + "employees/getId",
+        method: "GET",
+        async: false,
+        dataType: "json",
+        contentType: "application/json",
+        success: function (res) {
+            employeeCode = res.data;
+            empCodeInput.val(employeeCode);
+        }
     });
 }
