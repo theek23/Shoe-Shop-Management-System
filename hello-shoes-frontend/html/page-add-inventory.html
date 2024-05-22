@@ -5,7 +5,9 @@
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
-      
+
+      <script src="../assets/js/jquery-3.7.0.min.js"></script>
+
       <!-- Favicon -->
       <link rel="shortcut icon" href="../assets/images/favicon.ico" />
       <link rel="stylesheet" href="../assets/css/backend-plugin.min.css">
@@ -13,6 +15,9 @@
       <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
       <link rel="stylesheet" href="../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
       <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">  </head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/custom.css">
+
   <body class="  ">
     <!-- loader Start -->
     <div id="loading">
@@ -306,107 +311,181 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="page-list-inventory.html" data-toggle="validator">
+                        <form id="inventory-form" action="page-list-inventory.html" data-toggle="validator">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Product Type *</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0">
-                                            <option>Standard</option>
-                                            <option>Combo</option>
-                                            <option>Digital</option>
-                                            <option>Service</option>
-                                        </select>
-                                    </div> 
-                                </div>  
-                                <div class="col-md-6">                      
+                                        <label>Item Picture *</label>
+                                        <label for="file-2" id="file-2-preview">
+                                            <img src="https://bit.ly/3ubuq5o" id="preview-img-inventory" alt="" style="max-width: 50%;">
+                                        </label>
+                                        <input class="file" type="file" id="file-2" accept="image/*" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Name *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Name" data-errors="Please Enter Name." required>
+                                        <label>Item Code *</label>
+                                        <input id="itemCode" name="itemCode" type="text" class="form-control" placeholder="Enter Item Code" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div>    
-                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Code *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Code" data-errors="Please Enter Code." required>
+                                        <label>Description *</label>
+                                        <input id="description" name="description" type="text" class="form-control" placeholder="Enter Description" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
-                                </div> 
-                                <div class="col-md-6"> 
-                                    <div class="form-group">
-                                        <label>Barcode Symbology *</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0">
-                                            <option>CREM01</option>
-                                            <option>UM01</option>
-                                            <option>SEM01</option>
-                                            <option>COF01</option>
-                                            <option>FUN01</option>
-                                            <option>DIS01</option>
-                                            <option>NIS01</option>
-                                        </select>
-                                    </div>
-                                </div> 
-                                <div class="col-md-6">
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Category *</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0">
-                                            <option>Beauty</option>
-                                            <option>Grocery</option>
-                                            <option>Food</option>
-                                            <option>Furniture</option>
-                                            <option>Shoes</option>
-                                            <option>Frames</option>
-                                            <option>Jewellery</option>
+                                        <input id="category" name="category" type="text" class="form-control" placeholder="">
+                                        <table id="tree-table-3" class="table table-hover table-bordered iq-bg-primary tree">
+                                            <thead class="bg-primary">
+                                            </thead>
+                                            <tbody>
+                                            <tr data-id="1" data-parent="0" data-level="1">
+                                                <td data-column="name">Shoes</td>
+                                            </tr>
+                                            <tr data-id="2" data-parent="1" data-level="2">
+                                                <td data-column="name">Gender</td>
+                                            </tr>
+                                            <tr data-id="3" data-parent="2" data-level="3">
+                                                <td data-column="name" data-value="Men">Men</td>
+                                            </tr>
+                                            <tr data-id="4" data-parent="2" data-level="3">
+                                                <td data-column="name" data-value="Women">Women</td>
+                                            </tr>
+                                            <tr data-id="5" data-parent="1" data-level="2">
+                                                <td data-column="name">Occasion</td>
+                                            </tr>
+                                            <tr data-id="6" data-parent="5" data-level="3">
+                                                <td data-column="name" data-value="Formal">Formal</td>
+                                            </tr>
+                                            <tr data-id="7" data-parent="5" data-level="3">
+                                                <td data-column="name" data-value="Casual">Casual</td>
+                                            </tr>
+                                            <tr data-id="8" data-parent="5" data-level="3">
+                                                <td data-column="name" data-value="Industrial">Industrial</td>
+                                            </tr>
+                                            <tr data-id="9" data-parent="5" data-level="3">
+                                                <td data-column="name" data-value="Sport">Sport</td>
+                                            </tr>
+                                            <tr data-id="10" data-parent="1" data-level="2">
+                                                <td data-column="name">Verities</td>
+                                            </tr>
+                                            <tr data-id="11" data-parent="10" data-level="3">
+                                                <td data-column="name" data-value="Heel">Heel</td>
+                                            </tr>
+                                            <tr data-id="12" data-parent="10" data-level="3">
+                                                <td data-column="name" data-value="Flats">Flats</td>
+                                            </tr>
+                                            <tr data-id="13" data-parent="10" data-level="3">
+                                                <td data-column="name" data-value="Wedges">Wedges</td>
+                                            </tr>
+                                            <tr data-id="14" data-parent="10" data-level="3">
+                                                <td data-column="name" data-value="Flip Flops">Flip Flops</td>
+                                            </tr>
+                                            <tr data-id="15" data-parent="10" data-level="3">
+                                                <td data-column="name" data-value="Sandals">Sandals</td>
+                                            </tr>
+                                            <tr data-id="16" data-parent="10" data-level="3">
+                                                <td data-column="name" data-value="Shoe">Shoe</td>
+                                            </tr>
+                                            <tr data-id="17" data-parent="10" data-level="3">
+                                                <td data-column="name" data-value="Slippers">Slippers</td>
+                                            </tr>
+                                            <tr data-id="18" data-parent="0" data-level="1">
+                                                <td data-column="name">Accessories</td>
+                                            </tr>
+                                            <tr data-id="19" data-parent="18" data-level="2">
+                                                <td data-column="name" data-value="Shoe Shampoo">Shoe Shampoo</td>
+                                            </tr>
+                                            <tr data-id="20" data-parent="18" data-level="2">
+                                                <td data-column="name" data-value="Full Socks">Full socks</td>
+                                            </tr>
+                                            <tr data-id="21" data-parent="18" data-level="2">
+                                                <td data-column="name" data-value="Half Socks">Half socks</td>
+                                            </tr>
+                                            <tr data-id="22" data-parent="18" data-level="2">
+                                                <td data-column="name">Polish</td>
+                                            </tr>
+                                            <tr data-id="23" data-parent="22" data-level="3">
+                                                <td data-column="name" data-value="Black Polish">Black</td>
+                                            </tr>
+                                            <tr data-id="24" data-parent="22" data-level="3">
+                                                <td data-column="name" data-value="Brown Polish">Brown</td>
+                                            </tr>
+                                            <tr data-id="25" data-parent="22" data-level="3">
+                                                <td data-column="name" data-value="Dark Brown Polish">Dark Brown</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Size *</label>
+                                        <select id="size" name="size" class="selectpicker form-control" data-style="py-0" required>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Cost *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Cost." required>
+                                        <label>Buying Price *</label>
+                                        <input id="buyingPrice" name="buyingPrice" type="number" step="0.01" class="form-control" placeholder="Enter Buying Price" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Price *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Price" data-errors="Please Enter Price." required>
+                                        <label>Sale Price *</label>
+                                        <input id="salePrice" name="salePrice" type="number" step="0.01" class="form-control" placeholder="Enter Sale Price" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Tax Method *</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0">
-                                            <option>Exclusive</option>
-                                            <option>Inclusive</option>
+                                        <label>Expected Profit *</label>
+                                        <input id="expectProfit" name="expectProfit" type="number" step="0.01" class="form-control" placeholder="Enter Expected Profit" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Profit Margin *</label>
+                                        <input id="profitMargin" name="profitMargin" type="number" step="0.01" class="form-control" placeholder="Enter Profit Margin" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Status *</label>
+                                        <select id="status" name="status" class="selectpicker form-control" data-style="py-0" required>
+                                            <option value="Available">Available</option>
+                                            <option value="OutOfStock">Out of Stock</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-12">                                    
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Quantity *</label>
-                                        <input type="text" class="form-control" placeholder="Enter Quantity" required>
+                                        <input id="Qty" name="Qty" type="number" class="form-control" placeholder="Enter Quantity" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Image</label>
-                                        <input type="file" class="form-control image-file" name="pic" accept="image/*">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Description / Product Details</label>
-                                        <textarea class="form-control" rows="4"></textarea>
-                                    </div>
-                                </div>
-                            </div>                            
-                            <button type="submit" class="btn btn-primary mr-2">Add Product</button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
+                            </div>
                         </form>
+                        <button id="saveBtn" type="submit" class="btn btn-secondary mr-2">Add Item</button>
+                        <button id="clear" type="reset" class="btn btn-danger">Reset</button>
                     </div>
                 </div>
             </div>
@@ -435,6 +514,7 @@
             </div>
         </div>
     </footer>
+    <script src="controller/InventoryController.js"></script>
     <!-- Backend Bundle JavaScript -->
     <script src="../assets/js/backend-bundle.min.js"></script>
     

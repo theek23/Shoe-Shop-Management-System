@@ -38,6 +38,7 @@ function searchEmployeeByName(){
         }
     });
 }
+
 function searchEmployee(searchValue){
     $.ajax({
         url: baseUrl + "employees?name="+searchValue,
@@ -326,11 +327,18 @@ function createEmployeeModals(employee, index) {
                         </div>
                         <div class="form-group">
                             <label for="edit-employee-gender-${index}">Gender</label>
-                            <input type="text" class="form-control" id="edit-employee-gender-${index}" value="${employee.gender}">
+                            <select id="edit-employee-gender-${index}" name="gender" class="form-control" data-style="py-0">
+                                <option value="Male" ${employee.gender === 'Male' ? 'selected' : ''}>Male</option>
+                                <option value="Female" ${employee.gender === 'Female' ? 'selected' : ''}>Female</option>
+                                <option value="Others" ${employee.gender === 'Others' ? 'selected' : ''}>Others</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="edit-employee-status-${index}">Status</label>
-                            <input type="text" class="form-control" id="edit-employee-status-${index}" value="${employee.status}">
+                            <select id="edit-employee-status-${index}" name="status" class="form-control" data-style="py-0">
+                                <option value="Married" ${employee.status === 'Married' ? 'selected' : ''}>Married</option>
+                                <option value="Unmarried" ${employee.status === 'Unmarried' ? 'selected' : ''}>Unmarried</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="edit-employee-designation-${index}">Designation</label>
@@ -338,7 +346,10 @@ function createEmployeeModals(employee, index) {
                         </div>
                         <div class="form-group">
                             <label for="edit-employee-role-${index}">Role</label>
-                            <input type="text" class="form-control" id="edit-employee-role-${index}" value="${employee.role}">
+                            <select id="edit-employee-role-${index}" name="role" class="form-control" data-style="py-0">
+                                <option value="ADMIN" ${employee.role === 'ADMIN' ? 'selected' : ''}>Admin</option>
+                                <option value="USER" ${employee.role === 'USER' ? 'selected' : ''}>User</option>
+                            </select>   
                         </div>
                         <div class="form-group">
                             <label for="edit-employee-dateOfBirth-${index}">Date of Birth</label>

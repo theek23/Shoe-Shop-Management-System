@@ -22,3 +22,27 @@
 #file-1 {
     display: none;
 }
+#file-2-preview {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+}
+
+/* Ensure the image preview does not exceed the container */
+#file-2-preview img {
+    max-width: 100%;
+    height: auto;
+    border: 7px solid #ddd; /* Optional: Add a border to the image */
+    border-radius: 4px; /* Optional: Add rounded corners to the image */
+    transition: border-color 0.3s ease; /* Optional: Add a transition effect */
+}
+
+/* Change border color on hover */
+#file-2-preview:hover img {
+    border-color: #aaa; /* Change to desired hover color */
+}
+
+/* Hide the actual file input */
+#file-2 {
+    display: none;
+}
