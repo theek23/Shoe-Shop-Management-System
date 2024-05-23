@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.helloshoes.backend.service;
 
+import lk.ijse.gdse66.helloshoes.backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 
 import java.util.List;
@@ -10,10 +11,12 @@ import java.util.List;
  **/
 
 public interface InventoryService {
-    Integer generateNewID();
     List<InventoryDTO> getAllInventories();
     InventoryDTO getInventoryDetails(String id);
     InventoryDTO saveInventory(InventoryDTO inventoryDTO);
     void updateInventory(String id, InventoryDTO inventoryDTO);
     void deleteInventory(String id);
+
+    Integer generateNewID();
+    List<InventoryDTO> findItemsByName(String name);
 }

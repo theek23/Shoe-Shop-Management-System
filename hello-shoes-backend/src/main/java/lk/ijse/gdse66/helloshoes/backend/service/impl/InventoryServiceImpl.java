@@ -4,7 +4,9 @@ import lk.ijse.gdse66.helloshoes.backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.Inventory;
+import lk.ijse.gdse66.helloshoes.backend.entity.Supplier;
 import lk.ijse.gdse66.helloshoes.backend.repo.InventoryRepo;
+import lk.ijse.gdse66.helloshoes.backend.repo.SupplierRepo;
 import lk.ijse.gdse66.helloshoes.backend.service.InventoryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -22,10 +24,12 @@ import java.util.UUID;
 @Transactional
 public class InventoryServiceImpl implements InventoryService{
     private InventoryRepo inventoryRepo;
+    private SupplierRepo supplierRepo;
     private ModelMapper modelMapper;
 
-    public InventoryServiceImpl(InventoryRepo inventoryRepo, ModelMapper modelMapper) {
+    public InventoryServiceImpl(InventoryRepo inventoryRepo, ModelMapper modelMapper, SupplierRepo supplierRepo) {
         this.inventoryRepo = inventoryRepo;
+        this.supplierRepo = supplierRepo;
         this.modelMapper = modelMapper;
     }
 
@@ -46,6 +50,12 @@ public class InventoryServiceImpl implements InventoryService{
         Integer newID = numericValue;
 
         return newID;
+    }
+
+    @Override
+    public List<InventoryDTO> findItemsByName(String name) {
+        return inventoryRepo.findItemByDescription(name).stream().map(
+                inventory -> modelMapper.map(inventory, InventoryDTO.class)).toList();
     }
 
     @Override
@@ -79,11 +89,24 @@ public class InventoryServiceImpl implements InventoryService{
 
     @Override
     public void updateInventory(String id, InventoryDTO inventoryDTO) {
-        Inventory existingInventory = inventoryRepo.findById(id).orElseThrow(() -> new RuntimeException("Inventory not found with ID: " + id));
-        modelMapper.map(inventoryDTO, existingInventory);
+        Inventory existingInventory = inventoryRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Inventory not found with ID: " + id));
+
+        // Map the non-relational fields from inventoryDTO to existingInventory
+        existingInventory.setDescription(inventoryDTO.getDescription());
+        existingInventory.setCategory(inventoryDTO.getCategory());
+        existingInventory.setSalePrice(inventoryDTO.getSalePrice());
+        existingInventory.setBuyingPrice(inventoryDTO.getBuyingPrice());
+        existingInventory.setQty(inventoryDTO.getQty());
+        existingInventory.setStatus(inventoryDTO.getStatus());
+
+        // Fetch and set the Supplier entity
+        Supplier supplier = supplierRepo.findById(inventoryDTO.getSupplier().getSupplierCode())
+                .orElseThrow(() -> new RuntimeException("Supplier not found with code: " + inventoryDTO.getSupplier().getSupplierCode()));
+        existingInventory.setSupplier(supplier);
+
         inventoryRepo.save(existingInventory);
     }
-
     @Override
     public void deleteInventory(String id) {
         if (!inventoryRepo.existsById(id)) {

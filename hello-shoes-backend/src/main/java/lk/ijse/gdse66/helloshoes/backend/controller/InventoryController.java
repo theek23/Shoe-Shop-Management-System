@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.helloshoes.backend.controller;
 
+import lk.ijse.gdse66.helloshoes.backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.helloshoes.backend.service.InventoryService;
 import lk.ijse.gdse66.helloshoes.backend.util.ResponseUtil;
@@ -34,10 +35,16 @@ public class InventoryController {
     public ResponseUtil findInventory(String id) {
         return new ResponseUtil("Ok", "Successfully Searched", inventoryService.getInventoryDetails(id));
     }
+    //get id
     @GetMapping("/getId")
     public ResponseUtil getNewID() {
         System.out.println(inventoryService.generateNewID());
         return new ResponseUtil("Ok", "Successfully Searched", inventoryService.generateNewID());
+    }
+    //search
+    @GetMapping(params = {"name"})
+    List<InventoryDTO> searchEmployeesByName(String name) {
+        return inventoryService.findItemsByName(name);
     }
     //Save
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

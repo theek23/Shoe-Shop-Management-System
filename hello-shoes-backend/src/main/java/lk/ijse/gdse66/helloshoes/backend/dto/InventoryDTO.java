@@ -30,6 +30,6 @@ public class InventoryDTO {
     private Integer qty;
 
 
-    private SupplierBasicDTO supplier;
+    private SupplierDTO supplier;
     private List<SaleDetail> saleDetail;
 }
