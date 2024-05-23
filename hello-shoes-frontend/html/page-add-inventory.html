@@ -15,8 +15,8 @@
       <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
       <link rel="stylesheet" href="../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
       <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">  </head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../assets/css/custom.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="../assets/css/custom.css">
 
   <body class="  ">
     <!-- loader Start -->
@@ -338,6 +338,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label>Supplier *</label>
+                                        <select id="supplierNames" name="supplierNames" class="selectpicker form-control" data-style="py-0" required>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label>Category *</label>
                                         <input id="category" name="category" type="text" class="form-control" placeholder="">
                                         <table id="tree-table-3" class="table table-hover table-bordered iq-bg-primary tree">
@@ -466,20 +473,22 @@
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Status *</label>
-                                        <select id="status" name="status" class="selectpicker form-control" data-style="py-0" required>
-                                            <option value="Available">Available</option>
-                                            <option value="OutOfStock">Out of Stock</option>
-                                        </select>
+                                        <label>Quantity *</label>
+                                        <input id="qty" name="qty" type="number" class="form-control" placeholder="Enter Quantity" required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Quantity *</label>
-                                        <input id="Qty" name="Qty" type="number" class="form-control" placeholder="Enter Quantity" required>
-                                        <div class="help-block with-errors"></div>
+                                        <label>Status *</label>
+                                        <select id="status" name="status" class=" form-control" style="pointer-events: none; !important;" data-style="py-0" required>
+                                            <option value="Available">Available</option>
+                                            <option value="Low">Low</option>
+                                            <option value="OutOfStock">Out of Stock</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

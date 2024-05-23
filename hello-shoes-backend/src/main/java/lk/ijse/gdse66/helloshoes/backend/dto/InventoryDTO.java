@@ -27,6 +27,8 @@ public class InventoryDTO {
     private Double expectProfit;
     private Double profitMargin;
     private String status;
+    private Integer qty;
+
 
     private SupplierBasicDTO supplier;
     private List<SaleDetail> saleDetail;

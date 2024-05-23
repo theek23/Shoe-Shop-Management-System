@@ -22,4 +22,6 @@ public class InventoryBasicDTO {
     private Double expectProfit;
     private Double profitMargin;
     private String status;
+    private Integer qty;
+
 }

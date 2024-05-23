@@ -1,3 +1,233 @@
+let baseUrl = "http://localhost:8080/shop/data/"
+
+let itemCode;
+var itmCodeInput = $('#itemCode');
+var categoryInput = $('#category');
+var items = [];
+var suppliers=[];
+
+var originalQuantity = 100;
+const qtyInput = document.getElementById('qty');
+const statusSelect = document.getElementById('status');
+
+//select page
+document.addEventListener("DOMContentLoaded", function() {
+    var path = window.location.pathname;
+    if (path.includes("page-add-inventory.html")) {
+        initialLoadPage01()
+
+    } else if (path.includes("page-list-inventory.html")) {
+        initialLoadPage02()
+        searchEmployeeByName()
+    } else {
+        console.log("Unknown page");
+    }
+});
+
+//initial loads
+
+function initialLoadPage01(){
+    itmCodeInput.prop('readonly', true);
+    setImage();
+    getNewId();
+    setStatus();
+    setSuppliers();
+}
+function initialLoadPage02(){
+    getAllEmployees();
+}
+
+
+//set suppliers
+function setSuppliers() {
+    $.ajax({
+        url: baseUrl + "suppliers",
+        method: "GET",
+        contentType: "application/json",
+        success: function (res) {
+            if (Array.isArray(res)) {
+                const selectElement = document.getElementById('supplierNames');
+                suppliers = res;
+                suppliers.forEach(supplier => {
+
+                    const option = document.createElement('option');
+                    option.value = supplier.supplierCode; // Option value
+                    option.text = supplier.name; // Option text
+                    selectElement.appendChild(option);
+                });
+            } else {
+                console.log("No data received or data is not an array");
+            }
+        },
+        error: function (err) {
+            console.error("Error fetching supplier:", err);
+        }
+    });
+}
+
+
+function getSupplierDetails(supplierCode, callback){
+    $.ajax({
+        url: baseUrl + "suppliers",
+        method: "GET",
+        contentType: "application/json",
+        data: { id: supplierCode },
+        success: function (res) {
+            if (res) {
+                callback(res.data);
+            } else {
+                console.log("No data received or data is not valid");
+                callback(null);
+            }
+        },
+        error: function (err) {
+            console.error("Error fetching supplier:", err);
+            callback(null);
+        }
+    });
+}
+
+//save
+$("#saveBtn").click(function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    let formData = new FormData($("#inventory-form")[0]);
+    let formArray = $("#inventory-form").serializeArray();
+
+    // Convert the array to a JSON object
+    var formDataJson = {};
+    $.each(formArray, function(_, field) {
+        formDataJson[field.name] = field.value;
+    });
+
+    // Get the selected supplier code
+    let supplierCode = formDataJson["supplierNames"];
+
+    // Fetch supplier details
+    getSupplierDetails(supplierCode, function(supplierData) {
+        if (supplierData) {
+            formDataJson["supplier"] = supplierData; // Add supplier object to form data
+
+            // Encode item picture to base64 and append to FormData
+            let fileInput = document.getElementById('file-2');
+            let file = fileInput.files[0];
+
+            if (file) {
+                encodeImageToBase64(file, function(base64String) {
+                    formDataJson["picture"] = base64String;
+                    console.log(formDataJson)
+                    // Perform the AJAX request
+                    $.ajax({
+                        url: baseUrl + "inventory",
+                        method: "POST",
+                        data: JSON.stringify(formDataJson),
+                        processData: false,
+                        contentType: "application/json",
+                        success: function(res) {
+                            alert('Item added successfully: ' + res.message);
+                            clearFormFields();
+                        },
+                        error: function(xhr) {
+                            alert('Error adding item: ' + xhr.responseJSON.message);
+                            console.log(xhr.responseJSON.message);
+                        }
+                    });
+                });
+            } else {
+                // Perform the AJAX request without item picture
+                $.ajax({
+                    url: baseUrl + "inventory",
+                    method: "POST",
+                    data: JSON.stringify(formDataJson),
+                    processData: false,
+                    contentType: "application/json",
+                    success: function(res) {
+                        alert('Item added successfully: ' + res.message);
+                        clearFormFields();
+                    },
+                    error: function(xhr) {
+                        alert('Error adding item: ' + xhr.responseJSON.message);
+                        console.log(xhr.responseJSON.message);
+                    }
+                });
+            }
+        } else {
+            alert('Error fetching supplier details.');
+        }
+    });
+});
+
+function clearFormFields() {
+    $("#inventory-form")[0].reset();
+    $("#preview-img-inventory").attr("src", "https://bit.ly/3ubuq5o");
+}
+
+//encode image to base 64
+function encodeImageToBase64(file, callback) {
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        var base64String = reader.result.split(',')[1];
+        callback(base64String);
+    };
+    reader.readAsDataURL(file);
+}
+//decode image to base 64
+function decodeBase64ToImage(base64String, imgElementId) {
+    const imgElement = document.getElementById(imgElementId);
+    imgElement.src = `data:image/jpeg;base64,${base64String}`;
+}
+
+//Generate new ID
+function getNewId() {
+    categoryInput.on('click', function (event)  {
+        if (categoryInput.val() != null) {
+            $.ajax({
+                url: baseUrl + "inventory/getId",
+                method: "GET",
+                async: false,
+                dataType: "json",
+                contentType: "application/json",
+                success: function (res) {
+                    console.log(res)
+                    itemCode = res.data;
+                    if (itemCode != 1){
+                        itemCode = "0000"+itemCode;
+                    }
+                    itmCodeInput.val(categoryInput.val()+itemCode);
+                }
+            });
+        }
+    });
+}
+//set image to page
+function setImage(){
+    document.getElementById('file-2').addEventListener('change', function(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var img = document.getElementById('preview-img-inventory');
+            img.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    });
+}
+
+function setStatus(){
+    qtyInput.addEventListener('input', (event) => {
+        // Get the current value of the input field
+        const currentValue = event.target.value;
+
+        if (currentValue == 0 || currentValue == null){
+            statusSelect.value = "OutOfStock";
+        } else if (currentValue <= originalQuantity / 2){
+            statusSelect.value = "Low";
+        } else {
+            statusSelect.value = "Available";
+        }
+
+        // Re-disable the select element
+    });
+}
+
 function createCategory() {
     let genderCode = '';
     let occasionCode = '';
@@ -91,6 +321,7 @@ function createCategory() {
         $('#category').val(category);
     });
 }
+
 
 // Initialize the createCategory function
 $(document).ready(function() {

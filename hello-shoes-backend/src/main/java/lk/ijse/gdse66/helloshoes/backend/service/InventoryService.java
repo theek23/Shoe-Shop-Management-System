@@ -10,6 +10,7 @@ import java.util.List;
  **/
 
 public interface InventoryService {
+    Integer generateNewID();
     List<InventoryDTO> getAllInventories();
     InventoryDTO getInventoryDetails(String id);
     InventoryDTO saveInventory(InventoryDTO inventoryDTO);

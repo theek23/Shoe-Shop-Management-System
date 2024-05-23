@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +29,25 @@ public class InventoryServiceImpl implements InventoryService{
     }
 
     @Override
+    public Integer generateNewID() {
+        String lastID = inventoryRepo.findLastInventoryCode();
+
+        if (lastID == null){
+            return 00001;
+        }
+        String numericPart = lastID.substring(5);
+        int numericValue = Integer.parseInt(numericPart);
+
+        // Increment the numeric value
+        numericValue++;
+
+        // Format the new ID with leading zeros
+        Integer newID = numericValue;
+
+        return newID;
+    }
+
+    @Override
     public List<InventoryDTO> getAllInventories() {
         return inventoryRepo.findAll().stream().map(
                 inventories -> modelMapper.map(inventories, InventoryDTO.class)).toList();
@@ -44,7 +64,9 @@ public class InventoryServiceImpl implements InventoryService{
         if (inventoryDTO.getItemCode() == null || inventoryDTO.getItemCode().isEmpty()) {
             inventoryDTO.setItemCode(UUID.randomUUID().toString()); // Generate new UUID only if necessary
         }
+        byte[] imageBytes = Base64.getDecoder().decode(inventoryDTO.getPicture());
         Inventory inventoryEntity = modelMapper.map(inventoryDTO, Inventory.class);
+        inventoryEntity.setPicture(imageBytes);
         Inventory savedInventory = inventoryRepo.save(inventoryEntity);
         return modelMapper.map(savedInventory, InventoryDTO.class);
     }

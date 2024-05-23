@@ -22,7 +22,8 @@ public class Inventory {
     @Id
     private String itemCode;
     private String description;
-    private String picture;
+    @Column(name = "picture", columnDefinition = "LONGBLOB")
+    private byte[] picture;
     private String category;
     private Integer size;
     private Double buyingPrice;
@@ -30,7 +31,7 @@ public class Inventory {
     private Double expectProfit;
     private Double profitMargin;
     private String status;
-    private Integer Qty;
+    private Integer qty;
 
     @ManyToOne
     @JoinColumn(name = "supplierCode")

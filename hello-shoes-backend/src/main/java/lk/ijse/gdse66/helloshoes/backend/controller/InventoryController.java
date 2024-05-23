@@ -2,7 +2,6 @@ package lk.ijse.gdse66.helloshoes.backend.controller;
 
 import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.helloshoes.backend.service.InventoryService;
-import lk.ijse.gdse66.helloshoes.backend.service.InventoryService;
 import lk.ijse.gdse66.helloshoes.backend.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -35,11 +34,16 @@ public class InventoryController {
     public ResponseUtil findInventory(String id) {
         return new ResponseUtil("Ok", "Successfully Searched", inventoryService.getInventoryDetails(id));
     }
-
+    @GetMapping("/getId")
+    public ResponseUtil getNewID() {
+        System.out.println(inventoryService.generateNewID());
+        return new ResponseUtil("Ok", "Successfully Searched", inventoryService.generateNewID());
+    }
     //Save
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     InventoryDTO saveInventory(@RequestBody InventoryDTO inventoryDTO){
+        System.out.println(inventoryDTO);
         return inventoryService.saveInventory(inventoryDTO);
     }
 

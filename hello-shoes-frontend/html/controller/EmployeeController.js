@@ -405,7 +405,7 @@ function createEmployeeModals(employee, index) {
         </div>
     `;
     modalsContainer.appendChild(deleteModal);
-
+    //update
     $(`#edit-employee-form-${index}`).off('submit').on('submit', function (event) {
         event.preventDefault();
         const updatedEmployee = {
