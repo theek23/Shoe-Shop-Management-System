@@ -18,7 +18,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     } else if (path.includes("page-list-inventory.html")) {
         initialLoadPage02()
-        searchEmployeeByName()
+        //searchEmployeeByName()
+
+        console.log("here")
     } else {
         console.log("Unknown page");
     }
@@ -33,11 +35,93 @@ function initialLoadPage01(){
     setStatus();
     setSuppliers();
 }
+
+
+
 function initialLoadPage02(){
-    getAllEmployees();
+    getAllItems();
 }
 
 
+
+//get All Items
+function getAllItems() {
+    $.ajax({
+        url: baseUrl + "inventory",
+        method: "GET",
+        contentType: "application/json",
+        success: function (res) {
+            if (Array.isArray(res)) {
+                items = res;
+                loadAllItems(items);
+            } else {
+                console.log("No data received or data is not an array");
+            }
+        },
+        error: function (err) {
+            console.error("Error fetching employee:", err);
+        }
+    });
+}
+function loadAllItems(items) {
+    console.log(items)
+    const tbody = document.querySelector('.data-tables tbody');
+
+    // Clear any existing rows
+    tbody.innerHTML = '';
+
+    // Loop through the items array and create rows
+    items.forEach((item, index) => {
+        const imgElementId = `item-image-${index}`;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <div class="checkbox d-inline-block">
+                    <input type="checkbox" class="checkbox-input" id="checkbox${index + 2}">
+                    <label for="checkbox${index + 2}" class="mb-0"></label>
+                </div>
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img id="${imgElementId}" class="img-fluid rounded avatar-50 mr-3" alt="image">
+                    <div>
+                        ${item.description}
+                        <p class="mb-0"><small>${item.description}</small></p>
+                    </div>
+                </div>
+            </td>
+            <td>${item.itemCode}</td>
+            <td>${item.category}</td>
+            <td>${item.supplier.name}</td>
+            <td>Rs. ${item.salePrice}</td>
+            <td>Rs. ${item.buyingPrice}</td>
+            <td>${item.qty}</td>
+            <td>
+                <div class="d-flex align-items-center list-action">
+                    <a class="badge badge-info mr-2" data-toggle="modal" data-target="#view-item-${index}" data-toggle="tooltip" data-placement="top" title="View">
+                        <i class="ri-eye-line mr-0"></i>
+                    </a>
+                    <a class="badge bg-success mr-2" data-toggle="modal" data-target="#edit-item-${index}" data-toggle="tooltip" data-placement="top" title="Edit">
+                        <i class="ri-pencil-line mr-0"></i>
+                    </a>
+                    <a class="badge bg-warning mr-2" data-toggle="modal" data-target="#delete-item-${index}" data-toggle="tooltip" data-placement="top" title="Delete">
+                        <i class="ri-delete-bin-line mr-0"></i>
+                    </a>
+                </div>
+            </td>
+        `;
+        // Append the row to the table body
+        tbody.appendChild(row);
+
+        // Decode the base64 image and set it to the image element
+        decodeBase64ToImage(item.picture, imgElementId);
+
+        // Create modals for the item
+        // createItemModals(item, index);
+    });
+    // Initialize tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+}
 //set suppliers
 function setSuppliers() {
     $.ajax({

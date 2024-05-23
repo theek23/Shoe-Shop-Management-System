@@ -1,5 +1,6 @@
 package lk.ijse.gdse66.helloshoes.backend.service.impl;
 
+import lk.ijse.gdse66.helloshoes.backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.Inventory;
@@ -49,8 +50,13 @@ public class InventoryServiceImpl implements InventoryService{
 
     @Override
     public List<InventoryDTO> getAllInventories() {
-        return inventoryRepo.findAll().stream().map(
-                inventories -> modelMapper.map(inventories, InventoryDTO.class)).toList();
+        return inventoryRepo.findAll().stream().map(inventory -> {
+            InventoryDTO inventoryDTO = modelMapper.map(inventory, InventoryDTO.class);
+            if (inventory.getPicture() != null) {
+                inventoryDTO.setPicture(Base64.getEncoder().encodeToString(inventory.getPicture()));
+            }
+            return inventoryDTO;
+        }).toList();
     }
 
     @Override

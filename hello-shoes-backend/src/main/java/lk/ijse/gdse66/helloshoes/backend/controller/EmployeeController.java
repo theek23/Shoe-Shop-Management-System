@@ -40,6 +40,7 @@ public class EmployeeController {
         return new ResponseUtil("Ok", "Successfully Searched", employeeService.generateNewID());
     }
 
+    //search
     @GetMapping(params = {"name"})
     List<EmployeeDTO> searchEmployeesByName(String name) {
         return employeeService.findEmployeesByName(name);
