@@ -28,6 +28,8 @@ public class Sale {
     private Integer lastDigitsOfCard;
     private Double addedPoints;
     private String status;
+    private String employeeName;
+
 
     @ManyToOne
     @JoinColumn(name = "customerCode")
