@@ -245,20 +245,6 @@
                                 </tr>
                                 </thead>
                                 <tbody class="ligth-body">
-                                <tr>
-                                    <td>Nike</td>
-                                    <td>FSM00001</td>
-                                    <td>1</td>
-                                    <td>Rs. 5000</td>
-                                    <td>
-                                        <div class="d-flex align-items-center list-action">
-                                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                                               href="#"><i class="ri-eye-line mr-0"></i></a>
-                                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
-                                               href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -287,8 +273,9 @@
                                     <th>Item Code</th>
                                     <th>Description</th>
                                     <th>Category</th>
-                                    <th>Selling Price</th>
-                                    <th>Quantity</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                    <th>QTY</th>
                                 </tr>
                                 </thead>
                                 <tbody class="ligth-body">
@@ -327,6 +314,25 @@
                             <button class="bg-yellow-500 text-white p-4 w-1/2">F2</button>
                             <button class="bg-red-500 text-white p-4 w-1/2">SALE</button>
                             <button class="bg-green-500 text-white p-4 w-1/2">PAY</button>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="quantityModal" tabindex="-1" role="dialog" aria-labelledby="quantityModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="quantityModalLabel">Enter Quantity</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="number" id="itemQuantity" class="form-control" placeholder="Enter quantity">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="addItemButton">Add</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -371,5 +377,8 @@
     
     <!-- app JavaScript -->
     <script src="../assets/js/app.js"></script>
+
+    <script src="controller/SaleController.js"></script>
+
   </body>
 </html>
