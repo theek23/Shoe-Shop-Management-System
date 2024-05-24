@@ -7,6 +7,8 @@ import java.util.List;
 public interface CustomerService {
     List<CustomerDTO> findCustomersByName(String name);
     String generateNewID();
+    CustomerDTO findCustomerByContactNo(String contactNo);
+
     List<CustomerDTO> getAllCustomers();
     CustomerDTO getCustomerDetails(String id);
     CustomerDTO saveCustomer(CustomerDTO customerDTO);

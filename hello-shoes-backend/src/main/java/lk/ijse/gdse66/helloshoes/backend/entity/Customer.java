@@ -27,6 +27,7 @@ public class Customer {
     private String customerCode;
     private String name;
     private Gender gender;
+    @Column(unique = true)
     private String contactNo;
     private String email;
     private String joinDate;

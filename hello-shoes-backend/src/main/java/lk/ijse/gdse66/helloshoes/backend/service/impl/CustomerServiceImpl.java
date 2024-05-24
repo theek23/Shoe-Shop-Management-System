@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -51,6 +52,13 @@ public class CustomerServiceImpl implements CustomerService {
         String newID = String.format("CUST%05d", numericValue);
 
         return newID;
+    }
+
+    @Override
+    public CustomerDTO findCustomerByContactNo(String contactNo) {
+        Optional<Customer> customerOpt = customerRepo.findCustomerByContactNo(contactNo);
+        Customer customer = customerOpt.orElseThrow(() -> new RuntimeException("Customer not found!"));
+        return modelMapper.map(customer, CustomerDTO.class);
     }
 
     @Override

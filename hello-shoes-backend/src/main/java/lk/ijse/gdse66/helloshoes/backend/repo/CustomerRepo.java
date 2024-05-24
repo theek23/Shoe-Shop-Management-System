@@ -1,12 +1,12 @@
 package lk.ijse.gdse66.helloshoes.backend.repo;
 
-import lk.ijse.gdse66.helloshoes.backend.dto.CustomerDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author: Theekshana De Silva,
@@ -19,4 +19,8 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
 
     @Query("SELECT c FROM Customer c WHERE c.name LIKE %:name%")
     List<Customer> findCustomersByName(@Param("name") String name);
+
+    @Query(value = "SELECT * FROM Customer WHERE contact_no = :contactNo", nativeQuery = true)
+    Optional<Customer> findCustomerByContactNo(@Param("contactNo") String contactNo);
+
 }

@@ -32,6 +32,10 @@ public class CustomerController {
     public ResponseUtil findCustomer(String id) {
         return new ResponseUtil("Ok", "Successfully Searched", customerService.getCustomerDetails(id));
     }
+    @GetMapping(params = {"contact_no"})
+    public ResponseUtil findCustomerByContactNo(@RequestParam("contact_no")String contactNo) {
+        return new ResponseUtil("Ok", "Successfully Searched", customerService.findCustomerByContactNo(contactNo));
+    }
     @GetMapping(params = {"name"})
     List<CustomerDTO> searchCustomersByName(String name) {
         return customerService.findCustomersByName(name);

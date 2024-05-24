@@ -3,13 +3,19 @@ let baseUrl = "http://localhost:8080/shop/data/"
 let orderCode;
 var items = [];
 
+let customer;
 let selectedItem = null;
 
+const customerName = $(`#customerName`)
+const orderId = $(`#orderCode`)
 
 document.addEventListener("DOMContentLoaded", function() {
     var path = window.location.pathname;
     if (path.includes("page-add-sale.html")) {
          initialLoadPage01()
+         searchItemsByName()
+         searchCustomerByContact()
+
     } else if (path.includes("page-list-sale.html")) {
         /*initialLoadPage02()
         searchItemsByName()*/
@@ -21,6 +27,62 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 function initialLoadPage01(){
     getAllItems();
+}
+//search customer
+function searchCustomerByContact() {
+    const searchInput = document.getElementById('searchCustomer');
+
+    searchInput.addEventListener('change', (event) => {
+        searchCustomer(event.target.value);
+    });
+}
+function searchCustomer(value) {
+    $.ajax({
+        url: baseUrl + "customers?contact_no="+value,
+        method: "GET",
+        contentType: "application/json",
+        success: function (res) {
+            customer = res.data;
+            customerName.text(customer.name)
+        },
+        error: function (err) {
+            console.error("Error fetching Customer:", err);
+            if (err.responseJSON && err.responseJSON.message) {
+                errorMessage = err.responseJSON.message;
+            }
+            alert(errorMessage)
+        },
+    });
+}
+//search items
+function searchItemsByName() {
+    const searchInput = document.getElementById('searchItem');
+
+    searchInput.addEventListener('input', (event) => {
+        searchItems(event.target.value)
+        if (event.target.value== null){
+            getAllItems();
+        }
+    });
+}
+//search items ajax
+function searchItems(value) {
+    $.ajax({
+        url: baseUrl + "inventory?name="+value,
+        method: "GET",
+        contentType: "application/json",
+        success: function (res) {
+            if (Array.isArray(res)) {
+                items = res;
+                loadAllItems(items);
+            } else {
+                console.log("No data received or data is not an array");
+            }
+        },
+        error: function (err) {
+            console.error("Error fetching Items:", err);
+        }
+    });
 }
 //get All Items
 function getAllItems() {
@@ -42,7 +104,6 @@ function getAllItems() {
     });
 }
 function loadAllItems(items) {
-    console.log(items);
     const tbody = document.querySelector('.data-tables tbody');
 
     // Clear any existing rows
@@ -70,12 +131,20 @@ function loadAllItems(items) {
     });
 }
 
+//add qty button
 document.getElementById('addItemButton').addEventListener('click', () => {
     const quantityInput = document.getElementById('itemQuantity').value;
     const quantity = quantityInput ? parseInt(quantityInput, 10) : 1;
-    addItemToDetailsTable(selectedItem, quantity);
-    $('#quantityModal').modal('hide');
-    document.getElementById('itemQuantity').value = ''; // Clear the input field
+
+    if (selectedItem.qty<quantity){
+        alert("Too Many QTYs")
+    }else {
+        addItemToDetailsTable(selectedItem, quantity);
+        $('#quantityModal').modal('hide');
+        document.getElementById('itemQuantity').value = ''; // Clear the input field
+    }
+
+
 });
 
 function addItemToDetailsTable(item, quantity) {
@@ -86,7 +155,7 @@ function addItemToDetailsTable(item, quantity) {
         <td>${item.description}</td>
         <td>${item.itemCode}</td>
         <td>${quantity}</td>
-        <td>Rs. ${item.salePrice}</td>
+        <td>Rs. ${item.salePrice * quantity}</td>
         <td>
             <div class="d-flex align-items-center list-action">
                 <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top"  href="#"><i class="ri-eye-line mr-0"></i></a>
