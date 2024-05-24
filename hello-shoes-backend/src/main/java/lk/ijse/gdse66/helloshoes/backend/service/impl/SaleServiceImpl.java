@@ -36,6 +36,25 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
+    public String generateNewID() {
+        String lastID = saleRepo.findLastOrderCode();
+
+        if (lastID == null){
+            return "O00001";
+        }
+        String numericPart = lastID.substring(5);
+        int numericValue = Integer.parseInt(numericPart);
+
+        // Increment the numeric value
+        numericValue++;
+
+        // Format the new ID with leading zeros
+        String newID = String.format("O%05d", numericValue);
+
+        return newID;
+    }
+
+    @Override
     public SaleDTO placeSale(SaleDTO saleDTO) {
         Sale sale = modelMapper.map(saleDTO,Sale.class);
         saleRepo.save(sale);

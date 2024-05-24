@@ -14,4 +14,6 @@ public interface SaleService {
     List<SaleDetailDTO> getAllOrderDetails();
 
     void updateSale(String id, SaleDTO saleDTO);
+
+    String generateNewID();
 }

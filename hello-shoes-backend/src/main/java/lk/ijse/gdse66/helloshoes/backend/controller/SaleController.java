@@ -33,7 +33,10 @@ public class SaleController {
         System.out.println("request received");
         return saleService.getAllOrderDetails();
     }
-
+    @GetMapping("/getId")
+    public ResponseUtil getNewID() {
+        return new ResponseUtil("Ok", "Successfully Searched", saleService.generateNewID());
+    }
     //Save
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)

@@ -27,6 +27,21 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 function initialLoadPage01(){
     getAllItems();
+    getNewId()
+}
+//Generate new ID
+function getNewId() {
+    $.ajax({
+        url: baseUrl + "sale/getId",
+        method: "GET",
+        async: false,
+        dataType: "json",
+        contentType: "application/json",
+        success: function (res) {
+            orderCode = res.data;
+            orderId.val(orderCode);
+        }
+    });
 }
 //search customer
 function searchCustomerByContact() {
