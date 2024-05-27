@@ -9,6 +9,9 @@ let selectedItem = null;
 const customerName = $(`#customerName`)
 const orderId = $(`#orderCode`)
 
+const totalTxt = $(`#totalTxt`)
+const netTxt = $(`#netTxt`)
+
 document.addEventListener("DOMContentLoaded", function() {
     var path = window.location.pathname;
     if (path.includes("page-add-sale.html")) {
@@ -144,28 +147,32 @@ function loadAllItems(items) {
             $('#quantityModal').modal('show');
         });
     });
+
+    // Add the event listener for the addItemButton only once
+    document.getElementById('addItemButton').addEventListener('click', () => {
+        const quantityInput = document.getElementById('itemQuantity').value;
+        const quantity = quantityInput ? parseInt(quantityInput, 10) : 1;
+
+        if (selectedItem.qty < quantity) {
+            alert("Too Many QTYs");
+        } else {
+            addItemToDetailsTable(selectedItem, quantity);
+            $('#quantityModal').modal('hide');
+            document.getElementById('itemQuantity').value = ''; // Clear the input field
+
+            if (totalTxt.val() == 0) {
+                // console.log("here")
+            }
+            var total = totalTxt.val();
+            totalTxt.text(total + (selectedItem.salePrice * quantity));
+            netTxt.text(total + (selectedItem.salePrice * quantity));
+        }
+    });
 }
 function scrollToBottom() {
     const tableBody = $('.data-tables tbody');
     tableBody.scrollTop(tableBody[0].scrollHeight);
 }
-
-
-//add qty button
-document.getElementById('addItemButton').addEventListener('click', () => {
-    const quantityInput = document.getElementById('itemQuantity').value;
-    const quantity = quantityInput ? parseInt(quantityInput, 10) : 1;
-
-    if (selectedItem.qty<quantity){
-        alert("Too Many QTYs")
-    }else {
-        addItemToDetailsTable(selectedItem, quantity);
-        $('#quantityModal').modal('hide');
-        document.getElementById('itemQuantity').value = ''; // Clear the input field
-    }
-
-
-});
 
 function addItemToDetailsTable(item, quantity) {
     const detailsTableBody = document.querySelector('.tbl-server-info tbody');
