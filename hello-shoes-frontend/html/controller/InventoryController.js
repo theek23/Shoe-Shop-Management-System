@@ -34,6 +34,7 @@ function initialLoadPage01(){
     setImage();
     getNewId();
     setStatus();
+    setSuppliers()
     setSuppliersToSelect();
 }
 

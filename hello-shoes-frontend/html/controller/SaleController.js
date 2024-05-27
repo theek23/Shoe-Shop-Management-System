@@ -137,7 +137,7 @@ function loadAllItems(items) {
         `;
         // Append the row to the table body
         tbody.appendChild(row);
-
+        scrollToBottom();
         // Add double-click event listener to the row
         row.addEventListener('dblclick', () => {
             selectedItem = item;
@@ -145,6 +145,11 @@ function loadAllItems(items) {
         });
     });
 }
+function scrollToBottom() {
+    const tableBody = $('.data-tables tbody');
+    tableBody.scrollTop(tableBody[0].scrollHeight);
+}
+
 
 //add qty button
 document.getElementById('addItemButton').addEventListener('click', () => {

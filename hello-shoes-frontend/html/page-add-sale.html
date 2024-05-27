@@ -18,6 +18,25 @@
       <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+      <style>
+          .data-tables {
+              display: block;
+              overflow-y: auto;
+              max-height: 200px;
+          }
+
+          .data-tables tbody {
+              display: block;
+              overflow-y: auto;
+          }
+
+          .data-tables thead,
+          .data-tables tbody tr {
+              display: table;
+              width: 100%;
+              table-layout: fixed;
+          }
+      </style>
   </head>
   <body class="  ">
     <!-- loader Start -->
@@ -270,8 +289,8 @@
                     </div>
 
                     <div style="max-width: 55%; display: flex; justify-content: center; flex-wrap: wrap">
-                        <div class="">
-                            <table class="data-tables table mb-0 tbl-server-info">
+                        <div class="" >
+                            <table class="data-tables table mb-0 tbl-server-info" style="overflow-y: auto;" >
                                 <thead class="bg-white text-uppercase">
                                 <tr class="ligth ligth-data">
                                     <th>Item Code</th>
