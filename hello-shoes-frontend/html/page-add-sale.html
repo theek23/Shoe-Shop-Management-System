@@ -36,6 +36,9 @@
               width: 100%;
               table-layout: fixed;
           }
+          .light-body tr:hover {
+              cursor: pointer; /* Change cursor to pointer */
+          }
       </style>
   </head>
   <body class="  ">
@@ -240,7 +243,7 @@
                             <div style="display: flex; justify-content: space-around; margin-top: 30px;">
                                 <div style="max-width: 150px">
                                     <label>Order ID</label>
-                                    <input id="orderCode" name="orderCode" type="text" class="form-control" placeholder="O0001" style="height: 35px; width: 100px">
+                                    <input id="orderCode" name="orderCode" type="text" class="form-control" placeholder="O0001" style="height: 35px; width: 100px;pointer-events: none;">
                                 </div>
                                 <div class="" >
                                     <button class="flex items-center justify-content-center">
@@ -256,7 +259,7 @@
                             <button class="bg-yellow-500 text-white p-2 w-1/2">DETAILS</button>
                             <button class="bg-yellow-500 text-white p-2 w-1/2">PURCHASES</button>
                         </div>
-                        <div class="table-responsive rounded mb-3">
+                        <div class="table-responsive rounded mb-3" style="min-height: 150px; max-height: 220px; overflow-y: scroll;">
                             <table class="table mb-0 tbl-server-info">
                                 <thead class="bg-white text-uppercase">
                                 <tr class="ligth ligth-data">
@@ -283,23 +286,30 @@
                             <div>
                                 <div style="display: flex; flex-wrap: wrap">
                                     <h1><b>Rs. </b></h1>
-                                    <h1 id="totalTxt"><b>000.00</b></h1>
+                                    <h1 id="totalTxt"><b>000</b></h1>
                                 </div>
-                                <p>Rs. 000.00</p>
+                                <p>Rs. 000</p>
                                 <div style="display: flex; flex-wrap: wrap">
                                     <h1>Rs. </h1>
-                                    <h1 id="netTxt">000.00</h1>
+                                    <h1 id="netTxt">000</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div style="max-width: 55%; display: flex; justify-content: center; flex-wrap: wrap">
-                        <div style="overflow-y: scroll; height: 200px;">
-                            <table class="data-tables table mb-0 tbl-server-info"" >
+                    <div style="max-width: 55%; display: flex; justify-content: center; flex-wrap: wrap; align-content: flex-start">
+                        <div class="flex justify-content-sm-between space-x-20" style="height: 50px; margin-bottom: 20px">
+                            <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; width: 50%">
+                                <input id="datetime" name="datetime" type="text" step="0.01" placeholder="01/01/2024" style="max-width: 100%; pointer-events: none;" >
+                            </div>
+                            <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; width: 50%">
+                                <input id="empname" name="empname" type="text" step="0.01" placeholder="Cashier name" style="max-width: 100%; pointer-events: none;">
+                            </div>
+                        </div>
+                        <div style="overflow-y: scroll; height: 400px; scrollbar-width: none;">
+                            <table class="data-tables table mb-0 tbl-server-info" >
                                 <thead class="bg-white text-uppercase">
                                 <tr class="ligth ligth-data">
-                                    <th>Item Code</th>
+                                    <th>Code</th>
                                     <th>Description</th>
                                     <th>Category</th>
                                     <th>Size</th>
@@ -307,13 +317,13 @@
                                     <th>QTY</th>
                                 </tr>
                                 </thead>
-                                <tbody class="ligth-body">
+                                <tbody class="ligth-body" style="">
                                 <tr>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row" style="background-color: #F4F5FA; padding: 20px; border-radius: 10px; margin: 30px">
+                        <!--<div class="row" style="background-color: #F4F5FA; padding: 20px; border-radius: 10px; margin: 30px">
                             <div class="col-md-6" style="max-height: 100px">
                                 <div class="form-group">
                                     <label>Payment Method *</label>
@@ -338,7 +348,7 @@
                                 <h1>Status :</h1>
                                 <h1 id="statusTxt">Active</h1>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="flex" style="width: 100%; height: 100px">
                             <button class="bg-yellow-500 text-white p-4 w-1/2">F2</button>
                             <button class="bg-red-500 text-white p-4 w-1/2">SALE</button>
@@ -407,7 +417,7 @@
     <!-- app JavaScript -->
     <script src="../assets/js/app.js"></script>
 
-    <script src="controller/SaleController.js"></script>
+    <script type="module" src="controller/SaleController.js"></script>
 
   </body>
 </html>

@@ -1,3 +1,4 @@
+
 let baseUrl = "http://localhost:8080/shop/data/"
 
 let orderCode;
@@ -9,16 +10,15 @@ let selectedItem = null;
 const customerName = $(`#customerName`)
 const orderId = $(`#orderCode`)
 
-const totalTxt = $(`#totalTxt`)
+const totalTxt = $(`#totalTxt b`)
 const netTxt = $(`#netTxt`)
+const dateInput = $(`#datetime`)
+const empName = $(`#empname`)
 
 document.addEventListener("DOMContentLoaded", function() {
     var path = window.location.pathname;
     if (path.includes("page-add-sale.html")) {
          initialLoadPage01()
-         searchItemsByName()
-         searchCustomerByContact()
-
     } else if (path.includes("page-list-sale.html")) {
         /*initialLoadPage02()
         searchItemsByName()*/
@@ -31,6 +31,28 @@ document.addEventListener("DOMContentLoaded", function() {
 function initialLoadPage01(){
     getAllItems();
     getNewId()
+    searchItemsByName()
+    searchCustomerByContact()
+    setDateToInput();
+    setCashierName();
+}
+
+
+function setCashierName() {
+
+}
+
+function setDateToInput() {
+    const currentDate = new Date();
+
+    const formattedDate = ("0" + (currentDate.getMonth() + 1)).slice(-2) + "/"
+        + ("0" + currentDate.getDate()).slice(-2) + "/"
+        + currentDate.getFullYear() + " "
+        + ("0" + currentDate.getHours()).slice(-2) + ":"
+        + ("0" + currentDate.getMinutes()).slice(-2) + ":"
+        + ("0" + currentDate.getSeconds()).slice(-2);
+
+    dateInput.val(formattedDate);
 }
 //Generate new ID
 function getNewId() {
@@ -66,6 +88,7 @@ function searchCustomer(value) {
         error: function (err) {
             console.error("Error fetching Customer:", err);
             if (err.responseJSON && err.responseJSON.message) {
+                let errorMessage;
                 errorMessage = err.responseJSON.message;
             }
             alert(errorMessage)
@@ -146,12 +169,20 @@ function loadAllItems(items) {
             selectedItem = item;
             $('#quantityModal').modal('show');
         });
+        row.addEventListener('mouseover', () => {
+            row.style.cursor = 'pointer';
+            row.style.backgroundColor = '#f1f1f1'; // Optional: to change background color on hover
+        });
+        row.addEventListener('mouseout', () => {
+            row.style.backgroundColor = ''; // Reset background color on mouse out
+        });
     });
 
     // Add the event listener for the addItemButton only once
     document.getElementById('addItemButton').addEventListener('click', () => {
         const quantityInput = document.getElementById('itemQuantity').value;
         const quantity = quantityInput ? parseInt(quantityInput, 10) : 1;
+        var total;
 
         if (selectedItem.qty < quantity) {
             alert("Too Many QTYs");
@@ -160,12 +191,14 @@ function loadAllItems(items) {
             $('#quantityModal').modal('hide');
             document.getElementById('itemQuantity').value = ''; // Clear the input field
 
-            if (totalTxt.val() == 0) {
-                // console.log("here")
+            if (totalTxt.text() == 0) {
+                total = 0.00;
+            }else {
+                total = totalTxt.text();
+                console.log(total)
             }
-            var total = totalTxt.val();
-            totalTxt.text(total + (selectedItem.salePrice * quantity));
-            netTxt.text(total + (selectedItem.salePrice * quantity));
+            totalTxt.text(parseFloat(total) + parseFloat(selectedItem.salePrice * quantity));
+            netTxt.text(parseFloat(total) + parseFloat(selectedItem.salePrice * quantity));
         }
     });
 }
@@ -201,5 +234,15 @@ function addItemToDetailsTable(item, quantity) {
     row.querySelector('.delete-from-table').addEventListener('click', function(event) {
         event.preventDefault();
         row.remove();
+
+        var currentTotal = totalTxt.text();
+
+        if (parseFloat(currentTotal) - parseFloat(item.salePrice * quantity) == 0){
+            totalTxt.text("000");
+            netTxt.text("000");
+        }
+        totalTxt.text(parseFloat(currentTotal) - parseFloat(item.salePrice * quantity));
+        netTxt.text(parseFloat(currentTotal) - parseFloat(item.salePrice * quantity));
+
     });
 }
