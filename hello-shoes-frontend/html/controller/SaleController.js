@@ -35,6 +35,7 @@ function initialLoadPage01(){
     searchCustomerByContact()
     setDateToInput();
     setCashierName();
+
 }
 
 
@@ -255,3 +256,71 @@ function addItemToDetailsTable(item, quantity) {
 
     });
 }
+
+
+document.getElementById('placeOrderButton').addEventListener('click', function () {
+    const tbody = document.getElementById('item-details');
+
+    // Create the payment modal
+    const paymentModal = document.createElement('div');
+    paymentModal.classList.add('modal', 'fade');
+    paymentModal.id = 'payment-modal';
+    paymentModal.tabIndex = '-1';
+    paymentModal.role = 'dialog';
+    paymentModal.innerHTML = `
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Payment Method</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="paymentMethod">Select Payment Method:</label>
+                    <select id="paymentMethod" class="form-control" style="margin-bottom: 20px;">
+                        <option value="cash">Cash</option>
+                        <option value="card">Card</option>
+                    </select>
+                    <div id="cardDetails" style="display: none;">
+                        <label for="cardDigits">Last 4 digits of the card:</label>
+                        <input type="text" id="cardDigits" maxlength="4" class="form-control" style="margin-bottom: 10px;">
+                    </div>
+                    <button id="payButton" class="btn btn-success">Pay</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.getElementById('modalsContainer').appendChild(paymentModal);
+    $('#payment-modal').modal('show');
+
+    // Handle the change event for the payment method select
+    document.getElementById('paymentMethod').addEventListener('change', function () {
+        const paymentMethod = this.value;
+        if (paymentMethod === 'card') {
+            document.getElementById('cardDetails').style.display = 'block';
+        } else {
+            document.getElementById('cardDetails').style.display = 'none';
+        }
+    });
+
+    // Handle the click event for the Pay button
+    document.getElementById('payButton').addEventListener('click', function () {
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        if (paymentMethod === 'card') {
+            const cardDigits = document.getElementById('cardDigits').value;
+            if (cardDigits.length === 4) {
+                console.log('Payment method: Card');
+                console.log('Last 4 digits of the card: ' + cardDigits);
+                console.log('done');
+                $('#payment-modal').modal('hide');
+            } else {
+                alert('Please enter the last 4 digits of your card.');
+            }
+        } else {
+            console.log('Payment method: Cash');
+            console.log('done');
+            $('#payment-modal').modal('hide');
+        }
+    });
+});

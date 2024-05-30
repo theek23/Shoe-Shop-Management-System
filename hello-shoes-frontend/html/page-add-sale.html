@@ -18,6 +18,9 @@
       <link rel="stylesheet" href="../assets/vendor/remixicon/fonts/remixicon.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       <style>
           .data-tables {
               display: block;
@@ -38,6 +41,9 @@
           }
           .light-body tr:hover {
               cursor: pointer; /* Change cursor to pointer */
+          }
+          #placeOrderButton:hover {
+              background-color: #45a049;
           }
       </style>
   </head>
@@ -270,7 +276,7 @@
                                     <th>Action</th>
                                 </tr>
                                 </thead>
-                                <tbody class="ligth-body">
+                                <tbody id="item-details" class="ligth-body">
                                 </tbody>
                             </table>
                         </div>
@@ -350,11 +356,12 @@
                             <h1>Status :</h1>
                             <h1 id="statusTxt">Active</h1>
                         </div>
-                        <div class="flex" style="width: 100%; height: 100px; margin-top: 20px">
-                            <button class="bg-yellow-500 text-white p-4 w-1/2">F2</button>
-                            <button class="bg-red-500 text-white p-4 w-1/2">SALE</button>
-                            <button class="bg-green-500 text-white p-4 w-1/2">PAY</button>
+                        <div class="flex" style="width: 100%; height: 100px; margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+                            <button id="placeOrderButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">
+                                Place Order
+                            </button>
                         </div>
+                        <div id="modalsContainer"></div>
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="quantityModal" tabindex="-1" role="dialog" aria-labelledby="quantityModalLabel" aria-hidden="true">
