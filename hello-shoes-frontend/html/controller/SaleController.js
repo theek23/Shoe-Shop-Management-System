@@ -182,7 +182,8 @@ function loadAllItems(items) {
     document.getElementById('addItemButton').addEventListener('click', () => {
         const quantityInput = document.getElementById('itemQuantity').value;
         const quantity = quantityInput ? parseInt(quantityInput, 10) : 1;
-        var total;
+        var total = 0;
+        var points = 0;
 
         if (selectedItem.qty < quantity) {
             alert("Too Many QTYs");
@@ -193,12 +194,17 @@ function loadAllItems(items) {
 
             if (totalTxt.text() == 0) {
                 total = 0.00;
-            }else {
-                total = totalTxt.text();
-                console.log(total)
+            } else {
+                total = parseFloat(totalTxt.text()); // Convert to float here
+                console.log(total);
             }
-            totalTxt.text(parseFloat(total) + parseFloat(selectedItem.salePrice * quantity));
-            netTxt.text(parseFloat(total) + parseFloat(selectedItem.salePrice * quantity));
+//here
+            var newTotal = parseFloat(total) + parseFloat(selectedItem.salePrice * quantity);
+
+            points = newTotal/800;
+            $(`#pointsTxt`).text(points);
+            totalTxt.text(newTotal);
+            netTxt.text(newTotal);
         }
     });
 }
@@ -236,6 +242,7 @@ function addItemToDetailsTable(item, quantity) {
         row.remove();
 
         var currentTotal = totalTxt.text();
+        var currentPoints = $(`#pointsTxt`).text();
 
         if (parseFloat(currentTotal) - parseFloat(item.salePrice * quantity) == 0){
             totalTxt.text("000");
@@ -243,6 +250,8 @@ function addItemToDetailsTable(item, quantity) {
         }
         totalTxt.text(parseFloat(currentTotal) - parseFloat(item.salePrice * quantity));
         netTxt.text(parseFloat(currentTotal) - parseFloat(item.salePrice * quantity));
+
+        $(`#pointsTxt`).text(parseFloat(currentPoints) - (currentTotal/800));
 
     });
 }
