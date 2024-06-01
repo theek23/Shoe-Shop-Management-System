@@ -1,7 +1,9 @@
 package lk.ijse.gdse66.helloshoes.backend.controller;
 
+import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.SaleDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.SaleDetailDTO;
+import lk.ijse.gdse66.helloshoes.backend.dto.basic.InventoryBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.basic.SaleBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.service.SaleService;
 import lk.ijse.gdse66.helloshoes.backend.util.ResponseUtil;
@@ -10,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Theekshana De Silva,
@@ -50,7 +53,10 @@ public class SaleController {
     public double getTotalCost() {
         return saleService.findTotalInventoryCost();
     }
-
+    @GetMapping("/topSoldItems")
+    public List<InventoryBasicDTO> getTopSoldItems() {
+        return saleService.getTop4SoldItems();
+    }
     //refund
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,path = "/refund")
     List<SaleBasicDTO> findAllOrdersFromLast3Days(){

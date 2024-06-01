@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.helloshoes.backend.service.impl;
 
 import lk.ijse.gdse66.helloshoes.backend.dto.*;
+import lk.ijse.gdse66.helloshoes.backend.dto.basic.InventoryBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.basic.SaleBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.*;
 import lk.ijse.gdse66.helloshoes.backend.repo.*;
@@ -9,9 +10,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * @author: Theekshana De Silva,
@@ -75,6 +76,30 @@ public class SaleServiceImpl implements SaleService {
     @Override
     public double findTotalInventoryCost() {
         return inventoryRepo.findTotalInventoryCost();
+    }
+
+    @Override
+    public List<InventoryBasicDTO> getTop4SoldItems() {
+        List<InventoryBasicDTO> items = new ArrayList<>();
+        List<Object[]> results = saleDetailRepo.findTop4SoldItems();
+
+        for (Object[] result : results) {
+            String itemCode = (String) result[0];
+            BigDecimal totalQtyDecimal = (BigDecimal) result[1];
+            Integer totalQty = totalQtyDecimal.intValueExact();
+
+
+            Inventory inventory = inventoryRepo.findById(itemCode).orElse(null);
+            if (inventory != null) {
+                InventoryBasicDTO inventoryDTO = modelMapper.map(inventory, InventoryBasicDTO.class);
+                inventoryDTO.setPicture(Base64.getEncoder().encodeToString(inventory.getPicture()));
+                // You can add totalQty to the InventoryDTO if needed
+                 inventoryDTO.setQty(totalQty); // Ensure you have a setter for this in InventoryDTO
+                items.add(inventoryDTO);
+            }
+        }
+
+        return items;
     }
 
     @Override
