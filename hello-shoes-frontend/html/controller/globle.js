@@ -1,1 +1,1 @@
-var  bearerToken = "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJSb2xlX0FETUlOIn1dLCJzdWIiOiJ0aGVla3NoYW5hZGVpbHZhMjhAZ21haWwuY29tIiwiaWF0IjoxNzE3Mjg0MDIzLCJleHAiOjE3MTczNzA0MjN9.vsPZljU1eAf_5XP2gEth0syizF6yB92Wd5DuJvD8RwI";
+var  bearerToken = localStorage.getItem('bearerToken');

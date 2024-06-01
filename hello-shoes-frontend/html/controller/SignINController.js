@@ -29,7 +29,25 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         },*/
         data: JSON.stringify(data),
         success: function (response) {
-            console.log(response)
+            const token = response.token;
+            localStorage.setItem('bearerToken', token);
+
+            const decodedToken = jwt_decode(token);
+            console.log('Decoded Token:', decodedToken);
+
+            // Check if the user has an admin role
+            const roles = decodedToken.role || [];
+            const isAdmin = roles.some(role => role.authority === 'Role_ADMIN');
+            if (isAdmin) {
+                console.log('User is an admin');
+                // Perform actions for admin users
+                window.location.href = 'dashboard.html';
+            } else {
+                console.log('User is not an admin');
+                window.location.href = 'user/dashboard.html';
+
+                // Perform actions for non-admin users
+            }
         },
         error: function (error) {
             console.error('Error during login:', error);
