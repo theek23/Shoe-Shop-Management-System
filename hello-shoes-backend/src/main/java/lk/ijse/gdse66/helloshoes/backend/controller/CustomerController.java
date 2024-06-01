@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.helloshoes.backend.controller;
 
 import lk.ijse.gdse66.helloshoes.backend.dto.CustomerDTO;
+import lk.ijse.gdse66.helloshoes.backend.dto.basic.CustomerBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.Customer;
 import lk.ijse.gdse66.helloshoes.backend.service.CustomerService;
 import lk.ijse.gdse66.helloshoes.backend.util.ResponseUtil;
@@ -24,8 +25,9 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<CustomerDTO> getAllCustomers(){
+    List<CustomerBasicDTO> getAllCustomers(){
         return customerService.getAllCustomers();
     }
     @GetMapping(params = {"id"})
@@ -37,7 +39,7 @@ public class CustomerController {
         return new ResponseUtil("Ok", "Successfully Searched", customerService.findCustomerByContactNo(contactNo));
     }
     @GetMapping(params = {"name"})
-    List<CustomerDTO> searchCustomersByName(String name) {
+    List<CustomerBasicDTO> searchCustomersByName(String name) {
         return customerService.findCustomersByName(name);
     }
     @GetMapping("/NewLoyaltyMember")

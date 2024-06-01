@@ -95,8 +95,8 @@ function searchCustomer(value) {
         },
         error: function (err) {
             console.error("Error fetching Customer:", err);
+            let errorMessage;
             if (err.responseJSON && err.responseJSON.message) {
-                let errorMessage;
                 errorMessage = err.responseJSON.message;
             }
             alert(errorMessage)

@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.helloshoes.backend.service.impl;
 
 import lk.ijse.gdse66.helloshoes.backend.dto.CustomerDTO;
+import lk.ijse.gdse66.helloshoes.backend.dto.basic.CustomerBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.Customer;
 import lk.ijse.gdse66.helloshoes.backend.repo.CustomerRepo;
 import lk.ijse.gdse66.helloshoes.backend.service.CustomerService;
@@ -30,9 +31,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerDTO> findCustomersByName(String name) {
+    public List<CustomerBasicDTO> findCustomersByName(String name) {
         return customerRepo.findCustomersByName(name).stream().map(
-                customer -> modelMapper.map(customer,CustomerDTO.class)).toList();
+                customer -> modelMapper.map(customer,CustomerBasicDTO.class)).toList();
     }
 
     @Override
@@ -62,9 +63,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerDTO> getAllCustomers() {
+    public List<CustomerBasicDTO> getAllCustomers() {
         return customerRepo.findAll().stream().map(
-                customer -> modelMapper.map(customer,CustomerDTO.class)).toList();
+                customer -> modelMapper.map(customer,CustomerBasicDTO.class)).toList();
     }
 
     @Override
