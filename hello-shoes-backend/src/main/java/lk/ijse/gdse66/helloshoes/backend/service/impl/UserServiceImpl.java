@@ -6,6 +6,8 @@ import lk.ijse.gdse66.helloshoes.backend.entity.User;
 import lk.ijse.gdse66.helloshoes.backend.repo.UserRepo;
 import lk.ijse.gdse66.helloshoes.backend.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +27,14 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepo userRepo, ModelMapper modelMapper) {
         this.userRepo = userRepo;
         this.modelMapper = modelMapper;
+    }
+
+    @Override
+    public UserDetailsService userDetailService() {
+        return username -> userRepo.findByEmail(username)
+                .orElseThrow(() -> new
+                        UsernameNotFoundException(
+                        "user not found"));
     }
 
     @Override

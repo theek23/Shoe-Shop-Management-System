@@ -1,6 +1,5 @@
 package lk.ijse.gdse66.helloshoes.backend.service;
 
-import lk.ijse.gdse66.helloshoes.backend.dto.InventoryDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.SaleDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.SaleDetailDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.basic.InventoryBasicDTO;
