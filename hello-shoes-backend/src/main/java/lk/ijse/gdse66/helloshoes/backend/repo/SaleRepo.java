@@ -12,4 +12,7 @@ public interface SaleRepo extends JpaRepository<Sale,String> {
 
     @Query(value = "SELECT * FROM Sale s WHERE s.purchase_date >= NOW() - INTERVAL 3 DAY", nativeQuery = true)
     List<Sale> findAllOrdersFromLast3Days();
+
+    @Query("SELECT COUNT(s) FROM Sale s WHERE s.status = 'Active'")
+    long countActiveSales();
 }

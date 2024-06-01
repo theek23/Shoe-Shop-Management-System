@@ -38,6 +38,18 @@ public class SaleController {
     public ResponseUtil getNewID() {
         return new ResponseUtil("Ok", "Successfully Searched", saleService.generateNewID());
     }
+    @GetMapping("/activeSales")
+    public long getTotalSales() {
+        return saleService.contActiveSales();
+    }
+    @GetMapping("/totalProfit")
+    public double getTotalProfit() {
+        return saleService.findTotalProfitOfSoldItems();
+    }
+    @GetMapping("/totalCost")
+    public double getTotalCost() {
+        return saleService.findTotalInventoryCost();
+    }
 
     //refund
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,path = "/refund")

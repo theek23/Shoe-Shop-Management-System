@@ -19,4 +19,10 @@ public interface SaleService {
     String generateNewID();
 
     List<SaleBasicDTO> getAllOrdersFormLast3Days();
+
+    long contActiveSales();
+
+    double findTotalProfitOfSoldItems();
+
+    double findTotalInventoryCost();
 }

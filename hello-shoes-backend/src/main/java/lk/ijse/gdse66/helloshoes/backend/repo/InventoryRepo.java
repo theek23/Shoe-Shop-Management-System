@@ -14,5 +14,10 @@ public interface InventoryRepo extends JpaRepository<Inventory,String> {
     @Query("SELECT i FROM Inventory i WHERE i.description LIKE %:description%")
     List<Inventory> findItemByDescription(@Param("description") String description);
 
+    // Query to find the total cost of every record of inventory
+    @Query("SELECT SUM(i.buyingPrice * i.qty) FROM Inventory i")
+    double findTotalInventoryCost();
+
+
 
 }

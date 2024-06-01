@@ -58,6 +58,8 @@ public class InventoryServiceImpl implements InventoryService{
                 inventory -> modelMapper.map(inventory, InventoryDTO.class)).toList();
     }
 
+
+
     @Override
     public List<InventoryDTO> getAllInventories() {
         return inventoryRepo.findAll().stream().map(inventory -> {

@@ -19,4 +19,6 @@ public interface InventoryService {
 
     Integer generateNewID();
     List<InventoryDTO> findItemsByName(String name);
+
+
 }

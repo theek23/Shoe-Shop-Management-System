@@ -63,6 +63,21 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
+    public long contActiveSales() {
+        return saleRepo.countActiveSales();
+    }
+
+    @Override
+    public double findTotalProfitOfSoldItems() {
+        return saleDetailRepo.findTotalProfitOfSoldItems();
+    }
+
+    @Override
+    public double findTotalInventoryCost() {
+        return inventoryRepo.findTotalInventoryCost();
+    }
+
+    @Override
     public SaleDTO placeSale(SaleDTO saleDTO) {
         Employee employee;
         Customer customer = customerRepo.findById(saleDTO.getCustomer().getCustomerCode())
