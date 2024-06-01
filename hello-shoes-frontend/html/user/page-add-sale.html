@@ -1,0 +1,329 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+
+      <script src="../../assets/js/jquery-3.7.0.min.js"></script>
+
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+      <link rel="stylesheet" href="../../assets/css/backend-plugin.min.css">
+      <link rel="stylesheet" href="../../assets/css/backend.css?v=1.0.0">
+      <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+      <link rel="stylesheet" href="../../assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="../../assets/vendor/remixicon/fonts/remixicon.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <style>
+          .data-tables {
+              display: block;
+              overflow-y: auto;
+              max-height: 200px;
+          }
+
+          .data-tables tbody {
+              display: block;
+              overflow-y: auto;
+          }
+
+          .data-tables thead,
+          .data-tables tbody tr {
+              display: table;
+              width: 100%;
+              table-layout: fixed;
+          }
+          .light-body tr:hover {
+              cursor: pointer; /* Change cursor to pointer */
+          }
+          #placeOrderButton:hover {
+              background-color: #45a049;
+          }
+      </style>
+  </head>
+  <body class="  ">
+    <!-- loader Start -->
+    <div id="loading">
+          <div id="loading-center">
+          </div>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper" >
+      
+        <div class="iq-sidebar  sidebar-default ">
+            <div class="iq-sidebar-logo d-flex align-items-center justify-content-between">
+                <a href="dashboard.html" class="header-logo">
+                    <img src="../../assets/images/logo.png" class="img-fluid rounded-normal light-logo" alt="logo"><h5 class="logo-title light-logo ml-3">POSDash</h5>
+                </a>
+                <div class="iq-menu-bt-sidebar ml-0">
+                    <i class="las la-bars wrapper-menu"></i>
+                </div>
+            </div>
+            <div class="data-scrollbar" data-scroll="1">
+                <nav class="iq-sidebar-menu">
+                    <ul id="iq-sidebar-toggle" class="iq-menu">
+                        <li class="active">
+                            <a href="dashboard.html" class="svg-icon">
+                                <svg  class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                </svg>
+                                <span class="ml-4">Dashboards</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                          <a href="#people" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                              <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                              </svg>
+                              <span class="ml-4">Customers</span>
+                              <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                  <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                              </svg>
+                          </a>
+                          <ul id="people" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                  <li class="">
+                                          <a href="page-list-customers.html">
+                                              <i class="las la-minus"></i><span>Customers-List</span>
+                                          </a>
+                                  </li>
+                                  <li class="">
+                                          <a href="page-add-customers.html">
+                                              <i class="las la-minus"></i><span>Add Customers</span>
+                                          </a>
+                                  </li>
+                          </ul>
+                      </li>
+                        <li class=" ">
+                            <a href="#sale" class="collapsed" data-toggle="collapse" aria-expanded="false">
+                                <svg class="svg-icon" id="p-dash4" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                                </svg>
+                                <span class="ml-4">Sale</span>
+                                <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
+                                </svg>
+                            </a>
+                            <ul id="sale" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
+                                    <li class="">
+                                            <a href="page-list-sale.html">
+                                                <i class="las la-minus"></i><span>List Purchases</span>
+                                            </a>
+                                    </li>
+                                    <li class="active">
+                                            <a href="page-add-sale.html">
+                                                <i class="las la-minus"></i><span>Add Purchase</span>
+                                            </a>
+                                    </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="p-3"></div>
+            </div>
+            </div>
+        </div>
+        <div class="content-page" style="padding-top: 20px">
+     <div class="container-fluid add-form-list" >
+         <div class="flex justify-content-center" style="background-color: #EEEEEF; height: 100vh; width: 100%">
+            <div class="row" style="background-color: white; "  >
+                <div class="p-4" style="display: flex;justify-content: space-around;">
+                    <div style="width: 40%;">
+                        <div class="flex-md-wrap mb-4">
+                            <div class="flex justify-content-center space-x-4">
+                                <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; width: 50%">
+                                    <input id="searchCustomer" name="searchCustomer" type="text" step="0.01" placeholder="Customer Contact No" style="max-width: 100%">
+                                </div>
+                                <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; width: 50%">
+                                    <input id="searchItem" name="searchItem" type="text" step="0.01" placeholder="Item name" style="max-width: 100%">
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-around; margin-top: 30px;">
+                                <div style="max-width: 150px">
+                                    <label>Order ID</label>
+                                    <input id="orderCode" name="orderCode" type="text" class="form-control" placeholder="O0001" style="height: 35px; width: 100px;pointer-events: none;">
+                                </div>
+                                <div class="" >
+                                    <button class="flex items-center justify-content-center">
+                                        <img src="../../assets/images/icon/customer.png" alt="Customer" class="rounded-full">
+                                        <div style="margin-left: 15px">
+                                            <h2 id="customerName" class="text-xl font-bold">Customer Name</h2>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mb-4">
+                            <button class="bg-yellow-500 text-white p-2 w-1/2">DETAILS</button>
+                            <button class="bg-yellow-500 text-white p-2 w-1/2">PURCHASES</button>
+                        </div>
+                        <div class="table-responsive rounded mb-3" style="min-height: 150px; max-height: 220px; overflow-y: scroll;">
+                            <table class="table mb-0 tbl-server-info">
+                                <thead class="bg-white text-uppercase">
+                                <tr class="ligth ligth-data">
+                                    <th>Item</th>
+                                    <th>Code</th>
+                                    <th>QTY</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="item-details" class="ligth-body">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="flex justify-content-center">
+                            <div style="height: 1px; background-color: #393939; width: 88%; margin-top: 30px" ></div>
+                        </div>
+                        <div class="flex justify-between mb-4" style="margin-top: 30px">
+                            <div >
+                                <h1><b>TOTAL:</b> </h1>
+                                <p>TAX: </p>
+                                <p>NET: </p>
+                            </div>
+                            <div>
+                                <div style="display: flex; flex-wrap: wrap">
+                                    <h1><b>Rs. </b></h1>
+                                    <h1 id="totalTxt"><b>000</b></h1>
+                                </div>
+                                <p>Rs. 000</p>
+                                <div style="display: flex; flex-wrap: wrap">
+                                    <h1>Rs. </h1>
+                                    <h1 id="netTxt">000</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="max-width: 55%; display: flex; justify-content: center; flex-wrap: wrap; align-content: flex-start">
+                        <div class="flex justify-content-sm-between space-x-20" style="height: 50px; margin-bottom: 20px">
+                            <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; width: 50%">
+                                <input id="datetime" name="datetime" type="text" step="0.01" placeholder="01/01/2024" style="max-width: 100%; pointer-events: none;" >
+                            </div>
+                            <div style="border: 2px solid #ccc; padding: 10px; border-radius: 10px; width: 50%">
+                                <input id="empname" name="empname" type="text" step="0.01" placeholder="Cashier name" style="max-width: 100%; pointer-events: none;">
+                            </div>
+                        </div>
+                        <div style="overflow-y: scroll; height: 400px; scrollbar-width: none;">
+                            <table class="data-tables table mb-0 tbl-server-info" >
+                                <thead class="bg-white text-uppercase">
+                                <tr class="ligth ligth-data">
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                    <th>QTY</th>
+                                </tr>
+                                </thead>
+                                <tbody class="ligth-body" style="">
+                                <tr>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--<div class="row" style="background-color: #F4F5FA; padding: 20px; border-radius: 10px; margin: 30px">
+                            <div class="col-md-6" style="max-height: 100px">
+                                <div class="form-group">
+                                    <label>Payment Method *</label>
+                                    <select id="paymentMethod" name="paymentMethod" class="form-group" data-style="py-0">
+                                        <option value="Cash">Cash</option>
+                                        <option value="Card">Card</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="max-height: 100px">
+                                <div class="form-group" >
+                                    <label>Last Digits of card </label>
+                                    <input id="cardNumber" name="cardNumber" type="number" class="form-control" placeholder="Enter Digits" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                        </div>-->
+                        <div class="col-md-6" style="max-height: 100px; display: flex; flex-wrap: wrap; justify-content: space-evenly">
+                            <h1>Points :</h1>
+                            <h1 id="pointsTxt">1000</h1>
+                        </div>
+                        <div class="col-md-6" style="max-height: 100px;  display: flex; flex-wrap: wrap; justify-content: space-evenly">
+                            <h1>Status :</h1>
+                            <h1 id="statusTxt">Active</h1>
+                        </div>
+                        <div class="flex" style="width: 100%; height: 100px; margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+                            <button id="placeOrderButton" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">
+                                Place Order
+                            </button>
+                        </div>
+                        <div id="modalsContainer"></div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="quantityModal" tabindex="-1" role="dialog" aria-labelledby="quantityModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="quantityModalLabel">Enter Quantity</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="number" id="itemQuantity" class="form-control" placeholder="Enter quantity">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="addItemButton">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Page end  -->
+    </div>
+      </div>
+    </div>
+    <!-- Wrapper End-->
+    <footer class="iq-footer">
+            <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item"><a href="../../backend/privacy-policy.html">Privacy Policy</a></li>
+                                <li class="list-inline-item"><a href="../../backend/terms-of-service.html">Terms of Use</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 text-right">
+                            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> <a href="#" class="">POS Dash</a>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Backend Bundle JavaScript -->
+    <script src="../../assets/js/backend-bundle.min.js"></script>
+    
+    <!-- Table Treeview JavaScript -->
+    <script src="../../assets/js/table-treeview.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script src="../../assets/js/customizer.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script async src="../../assets/js/chart-custom.js"></script>
+    
+    <!-- app JavaScript -->
+    <script src="../../assets/js/app.js"></script>
+
+    <script type="module" src="../controller/SaleController.js"></script>
+
+  </body>
+</html>
