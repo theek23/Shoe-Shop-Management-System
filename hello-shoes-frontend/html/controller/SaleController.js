@@ -132,24 +132,6 @@ function createRefundModal(refund, index) {
         refundSale(refund.orderNo, refund, index);
     });
 }
-/*function setModalForRefundTable() {
-    $('#refundModal').on('show.bs.modal', function (event) {
-        console.log("here")
-
-        const button = $(event.relatedTarget);
-        const saleId = button.data('sale-id');
-        const sale = button.data('sale');
-        const modal = $(this);
-        modal.find('#confirmRefundBtn').data('sale-id', saleId);
-        modal.find('#confirmRefundBtn').data('sale', sale);
-    });
-
-    $('#confirmRefundBtn').on('click', function () {
-        const saleId = $(this).data('sale-id');
-        const sale = $(this).data('sale');
-        refundSale(saleId, sale);
-    });
-}*/
 function refundSale(id, refund, index) {
     $.ajax({
         url: baseUrl + 'sale/' + id,
@@ -159,12 +141,21 @@ function refundSale(id, refund, index) {
         success: function (res) {
             console.log('Refund successful:', res);
             getAllSalesEligibleForRefund();
-            $('#delete-refund-' + index).modal('hide');
+            closeModel(index)
+            alert("Refunded")
         },
         error: function (err) {
+            alert("Something went wrong")
             console.error('Error refunding sale:', err);
         }
     });
+}
+
+function closeModel(index){
+    $('#delete-refund-' + index).modal('hide');
+    $('.modal-backdrop').remove();
+    $('#modalsContainer').removeClass('modal-open');
+    $('#modalsContainer').css('padding-right', '');
 }
 function setCashierName() {
 
