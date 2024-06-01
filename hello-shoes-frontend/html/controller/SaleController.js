@@ -22,11 +22,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var path = window.location.pathname;
     if (path.includes("page-add-sale.html")) {
          initialLoadPage01()
-    } else if (path.includes("page-list-sale.html")) {
-        /*initialLoadPage02()
-        searchItemsByName()*/
-
-        console.log("here")
+    } else if (path.includes("page-list-refund.html")) {
+        initialLoadPage02()
     } else {
         console.log("Unknown page");
     }
@@ -38,9 +35,16 @@ function initialLoadPage01(){
     searchCustomerByContact()
     setDateToInput();
     setCashierName();
-
+    setPaymentModal();
 }
 
+function initialLoadPage02(){
+    loadRefundEligibleSaleToTable();
+}
+
+function loadRefundEligibleSaleToTable() {
+
+}
 
 function setCashierName() {
 
@@ -147,6 +151,8 @@ function getAllItems() {
         }
     });
 }
+
+//load all items to table
 function loadAllItems(items) {
     const tbody = document.querySelector('.data-tables tbody');
 
@@ -201,7 +207,6 @@ function loadAllItems(items) {
                 total = parseFloat(totalTxt.text()); // Convert to float here
                 console.log(total);
             }
-//here
             var newTotal = parseFloat(total) + parseFloat(selectedItem.salePrice * quantity);
 
             points = newTotal/800;
@@ -211,11 +216,13 @@ function loadAllItems(items) {
         }
     });
 }
+
 function scrollToBottom() {
     const tableBody = $('.data-tables tbody');
     tableBody.scrollTop(tableBody[0].scrollHeight);
 }
 
+//
 function addItemToDetailsTable(item, quantity) {
     const detailsTableBody = document.querySelector('.tbl-server-info tbody');
 
@@ -259,17 +266,19 @@ function addItemToDetailsTable(item, quantity) {
     });
 }
 
+//create payment modal and hadle it
 
-document.getElementById('placeOrderButton').addEventListener('click', function () {
-    const tbody = document.getElementById('item-details');
+function setPaymentModal(){
+    document.getElementById('placeOrderButton').addEventListener('click', function () {
+        const tbody = document.getElementById('item-details');
 
-    // Create the payment modal
-    const paymentModal = document.createElement('div');
-    paymentModal.classList.add('modal', 'fade');
-    paymentModal.id = 'payment-modal';
-    paymentModal.tabIndex = '-1';
-    paymentModal.role = 'dialog';
-    paymentModal.innerHTML = `
+        // Create the payment modal
+        const paymentModal = document.createElement('div');
+        paymentModal.classList.add('modal', 'fade');
+        paymentModal.id = 'payment-modal';
+        paymentModal.tabIndex = '-1';
+        paymentModal.role = 'dialog';
+        paymentModal.innerHTML = `
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -293,43 +302,43 @@ document.getElementById('placeOrderButton').addEventListener('click', function (
             </div>
         </div>
     `;
-    document.getElementById('modalsContainer').appendChild(paymentModal);
-    $('#payment-modal').modal('show');
+        document.getElementById('modalsContainer').appendChild(paymentModal);
+        $('#payment-modal').modal('show');
 
-    // Handle the change event for the payment method select
-    document.getElementById('paymentMethod').addEventListener('change', function () {
-        const paymentMethod = this.value;
-        if (paymentMethod === 'card') {
-            document.getElementById('cardDetails').style.display = 'block';
-        } else {
-            document.getElementById('cardDetails').style.display = 'none';
-        }
-    });
+        // Handle the change event for the payment method select
+        document.getElementById('paymentMethod').addEventListener('change', function () {
+            const paymentMethod = this.value;
+            if (paymentMethod === 'card') {
+                document.getElementById('cardDetails').style.display = 'block';
+            } else {
+                document.getElementById('cardDetails').style.display = 'none';
+            }
+        });
 
-    // Handle the click event for the Pay button
-    document.getElementById('payButton').addEventListener('click', function () {
-        const paymentMethod = document.getElementById('paymentMethod').value;
-        if (paymentMethod === 'card') {
-            const cardDigits = document.getElementById('cardDigits').value;
-            if (cardDigits.length === 4) {
-                saveCustomer("Card", cardDigits)
-                console.log('Payment method: Card');
-                console.log('Last 4 digits of the card: ' + cardDigits);
+        // Handle the click event for the Pay button
+        document.getElementById('payButton').addEventListener('click', function () {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            if (paymentMethod === 'card') {
+                const cardDigits = document.getElementById('cardDigits').value;
+                if (cardDigits.length === 4) {
+                    saveOrder("Card", cardDigits)
+                    console.log('Payment method: Card');
+                    console.log('Last 4 digits of the card: ' + cardDigits);
+                    console.log('done');
+                    $('#payment-modal').modal('hide');
+                } else {
+                    alert('Please enter the last 4 digits of your card.');
+                }
+            } else {
+                saveOrder("Card", null)
+                console.log('Payment method: Cash');
                 console.log('done');
                 $('#payment-modal').modal('hide');
-            } else {
-                alert('Please enter the last 4 digits of your card.');
             }
-        } else {
-            saveCustomer("Card", null)
-            console.log('Payment method: Cash');
-            console.log('done');
-            $('#payment-modal').modal('hide');
-        }
+        });
     });
-});
-
-function saveCustomer(paymentMethod,cardDigits){
+}
+function saveOrder(paymentMethod,cardDigits){
     // Collecting data from the form
     const orderNo = document.getElementById('orderCode').value;
     const total = parseFloat(document.getElementById('totalTxt').innerText);
@@ -386,6 +395,8 @@ function saveCustomer(paymentMethod,cardDigits){
         }
     });
 }
+
+//fix date
 function formatDate(dateString) {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -394,6 +405,7 @@ function formatDate(dateString) {
     return `${year}-${month}-${day}`;
 }
 
+//clear fields
 function clearAllFields() {
     // Clear text inputs
     document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
