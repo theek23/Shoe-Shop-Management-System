@@ -2,6 +2,7 @@ package lk.ijse.gdse66.helloshoes.backend.controller;
 
 import lk.ijse.gdse66.helloshoes.backend.dto.SaleDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.SaleDetailDTO;
+import lk.ijse.gdse66.helloshoes.backend.dto.basic.SaleBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.service.SaleService;
 import lk.ijse.gdse66.helloshoes.backend.util.ResponseUtil;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class SaleController {
     }
     //GetALL
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,path = "/Sales")
-    List<SaleDTO> getAllSales(){
+    List<SaleBasicDTO> getAllSales(){
         System.out.println("request received");
         return saleService.getAllOrders();
     }

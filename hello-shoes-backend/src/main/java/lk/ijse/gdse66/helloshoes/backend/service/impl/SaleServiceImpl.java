@@ -1,9 +1,7 @@
 package lk.ijse.gdse66.helloshoes.backend.service.impl;
 
-import lk.ijse.gdse66.helloshoes.backend.dto.CustomerDTO;
-import lk.ijse.gdse66.helloshoes.backend.dto.EmployeeDTO;
-import lk.ijse.gdse66.helloshoes.backend.dto.SaleDTO;
-import lk.ijse.gdse66.helloshoes.backend.dto.SaleDetailDTO;
+import lk.ijse.gdse66.helloshoes.backend.dto.*;
+import lk.ijse.gdse66.helloshoes.backend.dto.basic.SaleBasicDTO;
 import lk.ijse.gdse66.helloshoes.backend.entity.*;
 import lk.ijse.gdse66.helloshoes.backend.repo.*;
 import lk.ijse.gdse66.helloshoes.backend.service.SaleService;
@@ -11,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -62,21 +61,26 @@ public class SaleServiceImpl implements SaleService {
         Employee employee;
         Customer customer = customerRepo.findById(saleDTO.getCustomer().getCustomerCode())
                 .orElseThrow(() -> new NoSuchElementException("Customer not found with code: " + saleDTO.getCustomer().getCustomerCode()));
-        if (saleDTO.getEmployee().getEmployeeCode() != null){
-            employee= employeeRepo.findById(saleDTO.getEmployee().getEmployeeCode())
+
+        if (saleDTO.getEmployee().getEmployeeCode() != null) {
+            employee = employeeRepo.findById(saleDTO.getEmployee().getEmployeeCode())
                     .orElseThrow(() -> new NoSuchElementException("Employee not found with code: " + saleDTO.getEmployee().getEmployeeCode()));
-        }else {
+        } else {
             employee = employeeRepo.findById("EMP00001")
                     .orElseThrow(() -> new NoSuchElementException("Employee not found with code: " + saleDTO.getEmployee().getEmployeeCode()));
         }
-
-
 
         Sale sale = modelMapper.map(saleDTO, Sale.class);
         sale.setCustomer(customer);
         sale.setEmployee(employee);
         sale.setCustomerName(customer.getName());
         sale.setEmployeeName(employee.getName());
+
+        // Update customer's recent purchase date and total points
+        customer.setRecentPurchase(new Timestamp(System.currentTimeMillis()));
+        customer.setTotalPoints(customer.getTotalPoints() + saleDTO.getAddedPoints());
+
+        customerRepo.save(customer);
         saleRepo.save(sale);
 
         // Update inventory qty in inventory entity.
@@ -86,14 +90,15 @@ public class SaleServiceImpl implements SaleService {
             inventory.setQty(inventory.getQty() - saleDetail.getQty());
             inventoryRepo.save(inventory);
         }
+
         return saleDTO;
     }
 
 
     @Override
-    public List<SaleDTO> getAllOrders() {
+    public List<SaleBasicDTO> getAllOrders() {
         return saleRepo.findAll().stream().map(
-                sale -> modelMapper.map(sale, SaleDTO.class)).toList();
+                sale -> modelMapper.map(sale, SaleBasicDTO.class)).toList();
     }
 
     @Override

@@ -34,7 +34,7 @@ public class Customer {
     @Embedded
     private Address address;
     private Level Level;
-    private Integer totalPoints;
+    private Double totalPoints;
     private Date dateOfBirth;
     private Timestamp recentPurchase;
 

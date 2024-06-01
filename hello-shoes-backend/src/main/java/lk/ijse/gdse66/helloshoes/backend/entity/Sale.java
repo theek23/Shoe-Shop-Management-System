@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class Sale {
     private String orderNo;
     private String customerName;
     private Double total;
-    private Date purchaseDate;
+    private Timestamp purchaseDate;
     private String paymentMethod;
     private Integer lastDigitsOfCard;
     private Double addedPoints;

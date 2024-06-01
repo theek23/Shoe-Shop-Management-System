@@ -1,4 +1,5 @@
-package lk.ijse.gdse66.helloshoes.backend.dto;
+package lk.ijse.gdse66.helloshoes.backend.dto.basic;
+
 
 import lk.ijse.gdse66.helloshoes.backend.entity.Customer;
 import lk.ijse.gdse66.helloshoes.backend.entity.Employee;
@@ -19,7 +20,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SaleDTO {
+public class SaleBasicDTO {
     private String orderNo;
     private Double total;
     private Timestamp purchaseDate;
@@ -27,8 +28,4 @@ public class SaleDTO {
     private Integer lastDigitsOfCard;
     private Double addedPoints;
     private String status;
-
-    private Customer customer;
-    private Employee employee;
-    private List<SaleDetail> saleDetail;
 }

@@ -29,7 +29,7 @@ public class CustomerDTO implements Serializable {
     private String joinDate;
     private Address address;
     private Level level;
-    private Integer totalPoints;
+    private Double totalPoints;
     private Date dateOfBirth;
     private Timestamp recentPurchase;
 

@@ -3,6 +3,7 @@ let baseUrl = "http://localhost:8080/shop/data/"
 
 let orderCode;
 var items = [];
+var refundEligibleOrders = [];
 
 let customer;
 let selectedItem = null;
