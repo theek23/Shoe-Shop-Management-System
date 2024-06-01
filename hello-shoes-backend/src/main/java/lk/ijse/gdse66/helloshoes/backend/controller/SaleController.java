@@ -41,6 +41,7 @@ public class SaleController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     SaleDTO saveSale(@RequestBody SaleDTO saleDto){
+        System.out.println(saleDto);
         return saleService.placeSale(saleDto);
     }
 

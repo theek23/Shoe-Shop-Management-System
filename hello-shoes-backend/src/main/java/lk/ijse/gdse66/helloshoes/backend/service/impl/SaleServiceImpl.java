@@ -1,19 +1,18 @@
 package lk.ijse.gdse66.helloshoes.backend.service.impl;
 
+import lk.ijse.gdse66.helloshoes.backend.dto.CustomerDTO;
+import lk.ijse.gdse66.helloshoes.backend.dto.EmployeeDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.SaleDTO;
 import lk.ijse.gdse66.helloshoes.backend.dto.SaleDetailDTO;
-import lk.ijse.gdse66.helloshoes.backend.entity.Inventory;
-import lk.ijse.gdse66.helloshoes.backend.entity.Sale;
-import lk.ijse.gdse66.helloshoes.backend.entity.SaleDetail;
-import lk.ijse.gdse66.helloshoes.backend.repo.InventoryRepo;
-import lk.ijse.gdse66.helloshoes.backend.repo.SaleDetailRepo;
-import lk.ijse.gdse66.helloshoes.backend.repo.SaleRepo;
+import lk.ijse.gdse66.helloshoes.backend.entity.*;
+import lk.ijse.gdse66.helloshoes.backend.repo.*;
 import lk.ijse.gdse66.helloshoes.backend.service.SaleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * @author: Theekshana De Silva,
@@ -25,13 +24,17 @@ public class SaleServiceImpl implements SaleService {
     private SaleRepo saleRepo;
     private SaleDetailRepo saleDetailRepo;
     private InventoryRepo inventoryRepo;
+    private CustomerRepo customerRepo;
+    private EmployeeRepo employeeRepo;
 
     private ModelMapper modelMapper;
 
-    public SaleServiceImpl(SaleRepo saleRepo, SaleDetailRepo saleDetailRepo, InventoryRepo inventoryRepo, ModelMapper modelMapper) {
+    public SaleServiceImpl(SaleRepo saleRepo, SaleDetailRepo saleDetailRepo, InventoryRepo inventoryRepo, CustomerRepo customerRepo, EmployeeRepo employeeRepo, ModelMapper modelMapper) {
         this.saleRepo = saleRepo;
         this.saleDetailRepo = saleDetailRepo;
         this.inventoryRepo = inventoryRepo;
+        this.customerRepo = customerRepo;
+        this.employeeRepo = employeeRepo;
         this.modelMapper = modelMapper;
     }
 
@@ -56,17 +59,28 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleDTO placeSale(SaleDTO saleDTO) {
-        Sale sale = modelMapper.map(saleDTO,Sale.class);
+        Customer customer = customerRepo.findById(saleDTO.getCustomer().getCustomerCode())
+                .orElseThrow(() -> new NoSuchElementException("Customer not found with code: " + saleDTO.getCustomer().getCustomerCode()));
+        Employee employee = employeeRepo.findById(saleDTO.getEmployee().getEmployeeCode())
+                .orElseThrow(() -> new NoSuchElementException("Employee not found with code: " + saleDTO.getEmployee().getEmployeeCode()));
+
+        Sale sale = modelMapper.map(saleDTO, Sale.class);
+        sale.setCustomer(customer);
+        sale.setEmployee(employee);
+        sale.setCustomerName(customer.getName());
+        sale.setEmployeeName(employee.getName());
         saleRepo.save(sale);
 
-        //Update inventory qty in inventory entity.
-        for (SaleDetail saleDetail: sale.getSaleDetail()){
-            Inventory inventory = inventoryRepo.findById(saleDetail.getItemCode()).get();
-            inventory.setQty(inventory.getQty()-saleDetail.getQty());
+        // Update inventory qty in inventory entity.
+        for (SaleDetail saleDetail : sale.getSaleDetail()) {
+            Inventory inventory = inventoryRepo.findById(saleDetail.getItemCode())
+                    .orElseThrow(() -> new NoSuchElementException("Inventory not found with item code: " + saleDetail.getItemCode()));
+            inventory.setQty(inventory.getQty() - saleDetail.getQty());
             inventoryRepo.save(inventory);
         }
         return saleDTO;
     }
+
 
     @Override
     public List<SaleDTO> getAllOrders() {
