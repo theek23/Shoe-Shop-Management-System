@@ -48,6 +48,9 @@ function getAllSalesEligibleForRefund() {
         url: baseUrl + "sale/refund",
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                  refundEligibleSales = res;
@@ -137,6 +140,9 @@ function refundSale(id, refund, index) {
         url: baseUrl + 'sale/' + id,
         method: 'PUT',
         contentType: 'application/json',
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         data: JSON.stringify(refund),
         success: function (res) {
             console.log('Refund successful:', res);
@@ -181,6 +187,9 @@ function getNewId() {
         async: false,
         dataType: "json",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             orderCode = res.data;
             orderId.val(orderCode);
@@ -199,6 +208,9 @@ function searchCustomer(value) {
         url: baseUrl + "customers?contact_no="+value,
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             customer = res.data;
             customerName.text(customer.name)
@@ -230,6 +242,9 @@ function searchItems(value) {
         url: baseUrl + "inventory?name="+value,
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 items = res;
@@ -249,6 +264,9 @@ function getAllItems() {
         url: baseUrl + "inventory",
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 items = res;
@@ -495,6 +513,9 @@ function saveOrder(paymentMethod,cardDigits){
         url: baseUrl + "sale", // Replace with your actual endpoint
         type: 'POST',
         contentType: 'application/json',
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         data: JSON.stringify(saleData),
         success: function (response) {
             alert('Sale saved successfully:', response);

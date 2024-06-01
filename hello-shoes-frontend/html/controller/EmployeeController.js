@@ -44,6 +44,9 @@ function searchEmployee(searchValue){
         url: baseUrl + "employees?name="+searchValue,
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 employees = res;
@@ -63,6 +66,9 @@ function getAllEmployees() {
         url: baseUrl + "employees",
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 employees = res;
@@ -142,6 +148,9 @@ function getNewId() {
         async: false,
         dataType: "json",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             employeeCode = res.data;
             empCodeInput.val(employeeCode);
@@ -192,6 +201,9 @@ $("#saveBtn").click(function(event) {
                 data: JSON.stringify(formDataJson),
                 processData: false,
                 contentType: "application/json",
+                headers: {
+                    'Authorization': 'Bearer ' + bearerToken
+                },
                 success: function(res) {
                     alert('Employee added successfully: ' + res.message);
                     clearFormFields()
@@ -210,6 +222,9 @@ $("#saveBtn").click(function(event) {
             data: JSON.stringify(formDataJson),
             processData: false,
             contentType: "application/json",
+            headers: {
+                'Authorization': 'Bearer ' + bearerToken
+            },
             success: function(res) {
                 alert('Employee added successfully: ' + res.message);
                 clearFormFields()
@@ -439,6 +454,9 @@ function updateEmployee(id, employee, index) {
         url: baseUrl + "employees/" + id,
         method: "PUT",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         data: JSON.stringify(employee),
         success: function (res) {
             alert('Employee updated successfully: ' + res.message);
@@ -458,6 +476,9 @@ function deleteEmployee(id, index) {
     $.ajax({
         url: baseUrl + "employees/" + id,
         method: "DELETE",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             alert('Employee deleted successfully');
             closeModel(index, "delete");

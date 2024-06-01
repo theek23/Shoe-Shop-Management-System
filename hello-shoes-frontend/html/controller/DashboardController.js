@@ -1,9 +1,14 @@
 const baseUrl = 'http://localhost:8080/shop/data/';
+//var  bearerToken = "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbeyJhdXRob3JpdHkiOiJSb2xlX0FETUlOIn1dLCJzdWIiOiJ0aGVla3NoYW5hZGVpbHZhMjhAZ21haWwuY29tIiwiaWF0IjoxNzE3Mjg0MDIzLCJleHAiOjE3MTczNzA0MjN9.vsPZljU1eAf_5XP2gEth0syizF6yB92Wd5DuJvD8RwI";
+
 
 function getTotalActiveSales() {
     $.ajax({
         url: baseUrl + "sale/activeSales",
         method: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             $('#totalSalesTxt').text(res);
         },
@@ -18,6 +23,9 @@ function getTotalProfit() {
     $.ajax({
         url: baseUrl + "sale/totalProfit",
         method: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             $('#totalProfitTxt').text("Rs. "+res);
         },
@@ -32,6 +40,9 @@ function getTotalCost() {
     $.ajax({
         url: baseUrl + "sale/totalCost",
         method: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             $('#TotalCostTxt').text("Rs. "+res);
         },
@@ -46,6 +57,9 @@ function getTopSoldItems() {
     $.ajax({
         url: baseUrl + "sale/topSoldItems",
         method: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             loadItemsToCards(res);
             loadBestAllTimeItems(res)

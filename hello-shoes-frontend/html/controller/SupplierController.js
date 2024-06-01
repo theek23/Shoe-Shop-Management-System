@@ -33,6 +33,9 @@ function getNewId() {
         async: false,
         dataType: "json",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             supplierCode = res.data;
             supCodeInput.val(supplierCode);
@@ -57,6 +60,9 @@ function searchSupplier(searchValue){
         url: baseUrl + "suppliers?name="+searchValue,
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 console.log(res)
@@ -112,6 +118,9 @@ $("#saveBtn").click(function() {
         method: "POST",
         data: formDataJsonString,
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function(res) {
             alert('Supplier added successfully: ' + res.message);
             clearFormFields();
@@ -138,6 +147,9 @@ function getAllSuppliers() {
         url: baseUrl + "suppliers",
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 suppliers = res;
@@ -332,6 +344,9 @@ function deleteSupplier(id,index) {
     $.ajax({
         url: baseUrl + "suppliers/" + id,
         method: "DELETE",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             alert('Supplier deleted successfully');
             closeModel(index,"delete");
@@ -352,6 +367,9 @@ function updateSupplier(id,supplier,index){
         url: baseUrl + "suppliers/"+ id,
         method: "PUT",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         data: JSON.stringify(supplier),
         success: function (res) {
             alert('Supplier Updated successfully: ' + res.message);

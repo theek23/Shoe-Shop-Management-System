@@ -62,6 +62,9 @@ function searchItems(value) {
         url: baseUrl + "inventory?name="+value,
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 items = res;
@@ -82,6 +85,9 @@ function setSuppliers() {
         url: baseUrl + "suppliers",
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 suppliers = res;
@@ -102,6 +108,9 @@ function getAllItems() {
         url: baseUrl + "inventory",
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 items = res;
@@ -376,6 +385,9 @@ function getSupplierDetails(supplierCode, callback) {
         url: baseUrl + "suppliers",
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         data: { id: supplierCode },
         success: function (res) {
             if (res) {
@@ -428,6 +440,9 @@ $("#saveBtn").click(function(event) {
                         data: JSON.stringify(formDataJson),
                         processData: false,
                         contentType: "application/json",
+                        headers: {
+                            'Authorization': 'Bearer ' + bearerToken
+                        },
                         success: function(res) {
                             alert('Item added successfully: ' + res.message);
                             clearFormFields();
@@ -446,6 +461,9 @@ $("#saveBtn").click(function(event) {
                     data: JSON.stringify(formDataJson),
                     processData: false,
                     contentType: "application/json",
+                    headers: {
+                        'Authorization': 'Bearer ' + bearerToken
+                    },
                     success: function(res) {
                         alert('Item added successfully: ' + res.message);
                         clearFormFields();
@@ -493,6 +511,9 @@ function getNewId() {
                 async: false,
                 dataType: "json",
                 contentType: "application/json",
+                headers: {
+                    'Authorization': 'Bearer ' + bearerToken
+                },
                 success: function (res) {
                     console.log(res)
                     itemCode = res.data;
@@ -633,6 +654,9 @@ function updateItem(id, item, index) {
         url: baseUrl + "inventory/" + id,
         method: "PUT",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         data: JSON.stringify(item),
         success: function (res) {
             alert('Item updated successfully: ' + res.message);

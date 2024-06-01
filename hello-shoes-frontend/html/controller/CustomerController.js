@@ -52,6 +52,9 @@ function searchCustomer(searchValue){
         url: baseUrl + "customers?name="+searchValue,
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 customers = res;
@@ -73,6 +76,9 @@ function getNewId() {
         async: false,
         dataType: "json",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             customerCode = res.data;
             custCodeInput.val(customerCode);
@@ -87,6 +93,9 @@ function getAllCustomers() {
         url: baseUrl + "customers",
         method: "GET",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
             if (Array.isArray(res)) {
                 customers = res;
@@ -118,6 +127,9 @@ function deleteCustomer(id,index) {
     $.ajax({
         url: baseUrl + "customers/" + id,
         method: "DELETE",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function (res) {
                 alert('Customer deleted successfully');
                 closeModel(index,"delete");
@@ -138,6 +150,9 @@ function updateCustomer(id,customer,index){
         url: baseUrl + "customers/"+ id,
         method: "PUT",
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         data: JSON.stringify(customer),
         success: function (res) {
             alert('Customer Updated successfully: ' + res.message);
@@ -188,6 +203,9 @@ $("#saveBtn").click(function() {
         method: "POST",
         data: formDataJsonString,
         contentType: "application/json",
+        headers: {
+            'Authorization': 'Bearer ' + bearerToken
+        },
         success: function(res) {
             alert('Customer added successfully: ' + res.message);
             clearFormFields();
