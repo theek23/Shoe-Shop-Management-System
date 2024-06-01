@@ -15,6 +15,9 @@ const netTxt = $(`#netTxt`)
 const dateInput = $(`#datetime`)
 const empName = $(`#empname`)
 
+
+const searchInput = document.getElementById('searchCustomer');
+
 document.addEventListener("DOMContentLoaded", function() {
     var path = window.location.pathname;
     if (path.includes("page-add-sale.html")) {
@@ -71,7 +74,6 @@ function getNewId() {
 }
 //search customer
 function searchCustomerByContact() {
-    const searchInput = document.getElementById('searchCustomer');
 
     searchInput.addEventListener('change', (event) => {
         searchCustomer(event.target.value);
@@ -310,6 +312,7 @@ document.getElementById('placeOrderButton').addEventListener('click', function (
         if (paymentMethod === 'card') {
             const cardDigits = document.getElementById('cardDigits').value;
             if (cardDigits.length === 4) {
+                saveCustomer("Card", cardDigits)
                 console.log('Payment method: Card');
                 console.log('Last 4 digits of the card: ' + cardDigits);
                 console.log('done');
@@ -318,9 +321,99 @@ document.getElementById('placeOrderButton').addEventListener('click', function (
                 alert('Please enter the last 4 digits of your card.');
             }
         } else {
+            saveCustomer("Card", null)
             console.log('Payment method: Cash');
             console.log('done');
             $('#payment-modal').modal('hide');
         }
     });
 });
+
+function saveCustomer(paymentMethod,cardDigits){
+    // Collecting data from the form
+    const orderNo = document.getElementById('orderCode').value;
+    const total = parseFloat(document.getElementById('totalTxt').innerText);
+    const purchaseDate = document.getElementById('datetime').value; // Assumes this is a string
+    const formattedDate = formatDate(purchaseDate); // Format the date correctly
+    const addedPoints = parseFloat(document.getElementById('pointsTxt').innerText);
+    const orderStatus = "Active"
+    const customerCode = customer ? customer.customerCode : null; // Assuming you have customer data set somewhere
+    const employeeCode = null; /*document.getElementById('empname').value;*/ // Assuming employee code can be derived from employee name
+
+    // Collecting items from the item-details table
+    const items = [];
+    const rows = document.querySelectorAll('#item-details tr');
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        items.push({
+            itemCode: cells[1].innerText,
+            orderNo: orderNo,
+            qty: parseInt(cells[2].innerText)
+        });
+    });
+
+    // Constructing the JSON object
+    const saleData = {
+        orderNo: orderNo,
+        total: total,
+        purchaseDate: formattedDate,
+        paymentMethod: paymentMethod,
+        lastDigitsOfCard: cardDigits,
+        addedPoints: addedPoints,
+        customer: {
+            customerCode: customerCode
+        },
+        employee: {
+            employeeCode: employeeCode
+        },
+        saleDetail: items,
+        status: orderStatus,
+    };
+
+    // Sending the AJAX request
+    $.ajax({
+        url: baseUrl + "sale", // Replace with your actual endpoint
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(saleData),
+        success: function (response) {
+            alert('Sale saved successfully:', response);
+            clearAllFields();
+
+        },
+        error: function (error) {
+            console.error('Error saving sale:', error);
+        }
+    });
+}
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function clearAllFields() {
+    // Clear text inputs
+    document.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
+    document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
+
+    // Clear select inputs
+    document.querySelectorAll('select').forEach(select => select.selectedIndex = 0);
+
+    // Clear table rows
+    document.querySelector('#item-details').innerHTML = '';
+
+    // Clear other specific elements
+    document.getElementById('customerName').innerText = 'Customer Name';
+    document.getElementById('orderCode').value = '';
+    document.getElementById('totalTxt').innerText = '000';
+    document.getElementById('netTxt').innerText = '000';
+    document.getElementById('pointsTxt').innerText = '1000';
+    document.getElementById('statusTxt').innerText = 'Active';
+    document.getElementById('datetime').value = '';
+    document.getElementById('empname').value = '';
+
+    // Clear any other fields or elements as needed
+}

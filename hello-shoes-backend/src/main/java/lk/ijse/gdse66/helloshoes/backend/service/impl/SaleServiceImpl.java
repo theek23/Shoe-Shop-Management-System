@@ -59,10 +59,18 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleDTO placeSale(SaleDTO saleDTO) {
+        Employee employee;
         Customer customer = customerRepo.findById(saleDTO.getCustomer().getCustomerCode())
                 .orElseThrow(() -> new NoSuchElementException("Customer not found with code: " + saleDTO.getCustomer().getCustomerCode()));
-        Employee employee = employeeRepo.findById(saleDTO.getEmployee().getEmployeeCode())
-                .orElseThrow(() -> new NoSuchElementException("Employee not found with code: " + saleDTO.getEmployee().getEmployeeCode()));
+        if (saleDTO.getEmployee().getEmployeeCode() != null){
+            employee= employeeRepo.findById(saleDTO.getEmployee().getEmployeeCode())
+                    .orElseThrow(() -> new NoSuchElementException("Employee not found with code: " + saleDTO.getEmployee().getEmployeeCode()));
+        }else {
+            employee = employeeRepo.findById("EMP00001")
+                    .orElseThrow(() -> new NoSuchElementException("Employee not found with code: " + saleDTO.getEmployee().getEmployeeCode()));
+        }
+
+
 
         Sale sale = modelMapper.map(saleDTO, Sale.class);
         sale.setCustomer(customer);
