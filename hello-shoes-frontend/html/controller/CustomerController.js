@@ -100,6 +100,7 @@ function getAllCustomers() {
         }
     });
 }
+
 function closeModel(index,method){
     if(method== "delete"){
         $(`#delete-customer-${index}`).modal('hide');

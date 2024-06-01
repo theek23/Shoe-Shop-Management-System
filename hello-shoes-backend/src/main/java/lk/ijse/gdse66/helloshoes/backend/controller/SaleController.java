@@ -38,6 +38,13 @@ public class SaleController {
     public ResponseUtil getNewID() {
         return new ResponseUtil("Ok", "Successfully Searched", saleService.generateNewID());
     }
+
+    //refund
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE,path = "/refund")
+    List<SaleBasicDTO> findAllOrdersFromLast3Days(){
+        System.out.println("request received");
+        return saleService.getAllOrdersFormLast3Days();
+    }
     //Save
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
@@ -46,7 +53,7 @@ public class SaleController {
         return saleService.placeSale(saleDto);
     }
 
-    //Update
+    //refund
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateVehicle(@PathVariable String id,@RequestBody SaleDTO saleDto) {
         System.out.println(saleDto);

@@ -3,7 +3,7 @@ let baseUrl = "http://localhost:8080/shop/data/"
 
 let orderCode;
 var items = [];
-var refundEligibleOrders = [];
+var refundEligibleSales = [];
 
 let customer;
 let selectedItem = null;
@@ -40,13 +40,132 @@ function initialLoadPage01(){
 }
 
 function initialLoadPage02(){
-    loadRefundEligibleSaleToTable();
+    getAllSalesEligibleForRefund();
+}
+//getALlSalesEligibleFor refund
+function getAllSalesEligibleForRefund() {
+    $.ajax({
+        url: baseUrl + "sale/refund",
+        method: "GET",
+        contentType: "application/json",
+        success: function (res) {
+            if (Array.isArray(res)) {
+                 refundEligibleSales = res;
+                loadRefundEligibleSaleToTable(refundEligibleSales)
+            } else {
+                console.log("No data received or data is not an array");
+            }
+        },
+        error: function (err) {
+            console.error("Error fetching customers:", err);
+        }
+    });
+}
+function loadRefundEligibleSaleToTable(sales) {
+    const tbody = document.querySelector('.data-table tbody');
+
+    // Clear any existing rows
+    tbody.innerHTML = '';
+
+    // Loop through the sales array and create rows
+    sales.forEach((sale, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+                <td>
+                    <div class="checkbox d-inline-block">
+                        <input type="checkbox" class="checkbox-input" id="checkbox${index + 2}">
+                        <label for="checkbox${index + 2}" class="mb-0"></label>
+                    </div>
+                </td>
+                <td>${sale.orderNo}</td>
+                <td>${sale.paymentMethod}</td>
+                <td>${sale.purchaseDate}</td>
+                <td>${sale.total}</td>
+                <td>${sale.status}</td>
+                <td>
+                    <div class="d-flex align-items-center list-action">
+                        <a class="badge bg-warning mr-2" data-toggle="modal" data-target="#delete-refund-${index}" data-toggle="tooltip" data-placement="top" title="Refund">
+                            <i class="ri-delete-bin-line mr-0"></i>
+                        </a>
+                    </div>
+                </td>
+            `;
+        // Append the row to the table body
+        tbody.appendChild(row);
+        createRefundModal(sale,index);
+    });
+
+    // Initialize tooltips
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
-function loadRefundEligibleSaleToTable() {
+function createRefundModal(refund, index) {
+    const modalsContainer = document.querySelector('#modalsContainer');
 
+    const refundModal = document.createElement('div');
+    refundModal.classList.add('modal', 'fade');
+    refundModal.id = `delete-refund-${index}`;
+    refundModal.tabIndex = '-1';
+    refundModal.role = 'dialog';
+    refundModal.innerHTML = `
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Refund</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to refund the sale with ID <strong>${refund.orderNo}</strong>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="confirm-delete-${index}">Yes</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    modalsContainer.appendChild(refundModal);
+
+    document.getElementById(`confirm-delete-${index}`).addEventListener('click', function () {
+        refundSale(refund.orderNo, refund, index);
+    });
 }
+/*function setModalForRefundTable() {
+    $('#refundModal').on('show.bs.modal', function (event) {
+        console.log("here")
 
+        const button = $(event.relatedTarget);
+        const saleId = button.data('sale-id');
+        const sale = button.data('sale');
+        const modal = $(this);
+        modal.find('#confirmRefundBtn').data('sale-id', saleId);
+        modal.find('#confirmRefundBtn').data('sale', sale);
+    });
+
+    $('#confirmRefundBtn').on('click', function () {
+        const saleId = $(this).data('sale-id');
+        const sale = $(this).data('sale');
+        refundSale(saleId, sale);
+    });
+}*/
+function refundSale(id, refund, index) {
+    $.ajax({
+        url: baseUrl + 'sale/' + id,
+        method: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(refund),
+        success: function (res) {
+            console.log('Refund successful:', res);
+            getAllSalesEligibleForRefund();
+            $('#delete-refund-' + index).modal('hide');
+        },
+        error: function (err) {
+            console.error('Error refunding sale:', err);
+        }
+    });
+}
 function setCashierName() {
 
 }

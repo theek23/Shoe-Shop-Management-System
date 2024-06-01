@@ -22,13 +22,13 @@ import java.util.List;
 public class Sale {
     @Id
     private String orderNo;
-    private String customerName;
     private Double total;
     private Timestamp purchaseDate;
     private String paymentMethod;
     private Integer lastDigitsOfCard;
     private Double addedPoints;
     private String status;
+    private String customerName;
     private String employeeName;
 
 

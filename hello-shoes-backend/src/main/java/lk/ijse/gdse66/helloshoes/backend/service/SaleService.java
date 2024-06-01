@@ -17,4 +17,6 @@ public interface SaleService {
     void updateSale(String id, SaleDTO saleDTO);
 
     String generateNewID();
+
+    List<SaleBasicDTO> getAllOrdersFormLast3Days();
 }

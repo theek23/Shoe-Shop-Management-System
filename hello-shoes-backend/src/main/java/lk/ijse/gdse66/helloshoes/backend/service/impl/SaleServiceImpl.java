@@ -57,6 +57,12 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
+    public List<SaleBasicDTO> getAllOrdersFormLast3Days() {
+        return saleRepo.findAllOrdersFromLast3Days().stream().map(
+                sale -> modelMapper.map(sale, SaleBasicDTO.class)).toList();
+    }
+
+    @Override
     public SaleDTO placeSale(SaleDTO saleDTO) {
         Employee employee;
         Customer customer = customerRepo.findById(saleDTO.getCustomer().getCustomerCode())
@@ -109,8 +115,10 @@ public class SaleServiceImpl implements SaleService {
     //Refund Only
     @Override
     public void updateSale(String id, SaleDTO saleDTO) {
-        Sale existingSale = saleRepo.findById(id).orElseThrow(() -> new RuntimeException("Inventory not found with ID: " + id));
+        Sale existingSale = saleRepo.findById(id).orElseThrow(() -> new RuntimeException("Sale not found with ID: " + id));
         modelMapper.map(saleDTO, existingSale);
+        existingSale.setTotal(0.00);
+        existingSale.setStatus("Refunded");
         saleRepo.save(existingSale);
     }
 }
