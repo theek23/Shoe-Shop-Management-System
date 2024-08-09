@@ -30,14 +30,13 @@ The Shoe Shop Management System offers the following features:
   - **Spring Boot**: Framework for building the backend RESTful services.
   - **Spring Data JPA**: For database interactions and ORM.
   - **ModelMapper**: For mapping between entities and DTOs.
-  - **MySQL/PostgreSQL**: Database for storing application data.
+  - **MySQL**: Database for storing application data.
 
 - **Frontend**: 
-  - **React/Angular/Vue.js**: (Specify the framework you used) for building a dynamic and responsive user interface.
   - **HTML/CSS**: For structuring and styling the web pages.
 
 - **Others**:
-  - **Maven/Gradle**: For managing dependencies and building the project.
+  - **Maven**: For managing dependencies and building the project.
   - **Git**: For version control.
 
 ## Installation
